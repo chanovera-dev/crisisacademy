@@ -1,0 +1,229 @@
+#upcoming-events {
+    background-color: var(--wp--preset--color--base);
+    overflow: hidden;
+    position: relative;
+    padding: clamp(2rem, 10vw, 10rem) 0;
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: repeating-linear-gradient(to right,
+                color-mix(in srgb, var(--wp--preset--color--primary) 20%, transparent) 0px,
+                color-mix(in srgb, var(--wp--preset--color--primary) 20%, transparent) 1px,
+                transparent 1px,
+                transparent 180px);
+        mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    & .content {
+        padding: 0;
+        position: relative;
+        z-index: 1;
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            top: -5rem;
+            left: -5rem;
+            width: 15rem;
+            height: 15rem;
+            background-color: var(--wp--preset--color--tertiary);
+            pointer-events: none;
+            z-index: -1;
+            opacity: .5;
+        }
+
+        &::after {
+            top: auto;
+            bottom: -5rem;
+            left: auto;
+            right: -5rem;
+        }
+
+        & .events-container {
+            background-color: #edf5ff;
+            box-shadow: #1d224f12 0px 54px 55px, #1d224f08 0px -12px 30px, #1d224f08 0px 4px 6px, #1d224f08 0px 12px 13px, #1d224f08 0px -3px 5px;
+            z-index: 1;
+            position: relative;
+
+            &::before,
+            &::after {
+                content: '';
+                position: absolute;
+                width: 160px;
+                height: 70px;
+                background-image: radial-gradient(circle, color-mix(in srgb, var(--wp--preset--color--primary) 100%, transparent) 1.5px, transparent 1.5px);
+                background-size: 18px 18px;
+                pointer-events: none;
+                z-index: 0;
+            }
+
+            &::before {
+                top: -100px;
+                left: 2rem;
+            }
+
+            &::after {
+                bottom: -100px;
+                right: 2rem;
+            }
+
+            & .events-header {
+                position: relative;
+                padding: 2rem;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 200px;
+                    height: 3px;
+                    background-color: var(--wp--preset--color--focus);
+                    ;
+                    pointer-events: none;
+                    z-index: 0;
+                }
+            }
+
+            & .upcoming-events__track-wrapper {
+                position: relative;
+                overflow: hidden;
+                padding-bottom: 3rem;
+                display: grid;
+
+                & .upcoming-events__track {
+                    display: flex;
+                    overflow-x: auto;
+                    scroll-snap-type: x mandatory;
+                    -webkit-overflow-scrolling: touch;
+                    scrollbar-width: none;
+                    gap: 1rem;
+                    padding: .1rem 2rem;
+                    touch-action: pan-x;
+                    overscroll-behavior-x: contain;
+
+                    &::-webkit-scrollbar {
+                        display: none;
+                    }
+
+                    & .event-card {
+                        flex: 0 0 280px;
+                        aspect-ratio: 1 / 1;
+                        display: flex;
+                        flex-direction: column;
+                        background-color: var(--wp--preset--color--tertiary);
+                        border: 1px solid var(--wp--preset--color--line);
+                        padding: 2rem;
+                        transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity .5s ease, background-color .3s ease, border-color .3s ease;
+                        text-decoration: none;
+                        box-sizing: border-box;
+                        color: inherit;
+
+                        &:hover {
+                            opacity: 1 !important;
+                            border-color: var(--wp--preset--color--secondary);
+                        }
+
+                        &.event-card--featured {
+                            background: var(--wp--preset--color--primary);
+                            opacity: 1;
+
+                            & .event-card__day,
+                            & .event-card__month,
+                            & .event-card__title,
+                            & .event-card__time,
+                            & .event-card__location {
+                                color: #ffffff;
+                            }
+
+                            &:hover {
+                                background: color-mix(in srgb, var(--wp--preset--color--primary) 88%, #000);
+                            }
+                        }
+
+                        & .event-card__date {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 0.1rem;
+                        }
+
+                        & .event-card__day {
+                            font-size: 2.75rem;
+                            font-weight: 300;
+                            line-height: 1;
+                            color: var(--wp--preset--color--contrast);
+                            letter-spacing: -0.04em;
+                        }
+
+                        & .event-card__month {
+                            font-size: 0.7rem;
+                            font-weight: 700;
+                            letter-spacing: 0.12em;
+                            text-transform: uppercase;
+                            color: color-mix(in srgb, var(--wp--preset--color--contrast) 50%, transparent);
+                        }
+
+                        & .event-card__body {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 0.3rem;
+                            flex: 1;
+                        }
+
+                        & .event-card__title {
+                            font-size: 0.95rem;
+                            font-weight: 600;
+                            line-height: 1.35;
+                            color: var(--wp--preset--color--contrast);
+                            margin: 0;
+                        }
+
+                        & .event-card__time {
+                            font-size: 1rem;
+                            font-weight: 500;
+                            color: #285386;
+                            margin: 0;
+                        }
+
+                        & .event-card__location {
+                            font-size: 1rem;
+                            color: #285386;
+                            margin: 0;
+                        }
+
+                        & .event-card__badge {
+                            display: inline-flex;
+                            align-self: flex-start;
+                            font-size: 0.68rem;
+                            font-weight: 700;
+                            letter-spacing: 0.08em;
+                            text-transform: uppercase;
+                            background: rgba(255, 255, 255, 0.25);
+                            color: #fff;
+                            padding: 0.2rem 0.55rem;
+                            border-radius: 99px;
+                            border: 1px solid rgba(255, 255, 255, 0.4);
+                            margin-top: auto;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (width > 1024px) {
+    #upcoming-events {
+        & .content {
+            & .events-container {
+                background-color: #edf5ff8f;
+                backdrop-filter: blur(4px);
+            }
+        }
+    }
+}

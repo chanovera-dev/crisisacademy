@@ -8,16 +8,76 @@ if (!defined('ABSPATH')) {
  * Enqueue child theme styles.
  */
 function thecrisisacademy_enqueue_styles() {
-    // Enqueue child theme style.css depending on the parent theme's 'global' stylesheet
-    wp_enqueue_style(
-        'thecrisisacademy-style',
-        get_stylesheet_uri(),
-        array('global'),
-        wp_get_theme()->get('Version')
-    );
+    wp_enqueue_style('thecrisisacademy-style', get_stylesheet_uri(), array('global'), wp_get_theme()->get('Version'));
 }
 add_action('wp_enqueue_scripts', 'thecrisisacademy_enqueue_styles', 20);
 
+/**
+ * Get corporate homepage assets
+ */
+function crisisacademy_get_assets()
+{
+    $assets_path = '/assets';
+
+    return [
+        'css' => [
+            'homepage' => $assets_path . '/css/homepage.css',
+            'hero-styles' => $assets_path . '/css/homepage/hero.css',
+            'trouble-styles' => $assets_path . '/css/homepage/trouble-light.css',
+            'hearings-styles' => $assets_path . '/css/homepage/hearings.css',
+            'wcu-styles' => $assets_path . '/css/homepage/wcu.css',
+            'founder-styles' => $assets_path . '/css/homepage/founder.css',
+            'program-styles' => $assets_path . '/css/homepage/program.css',
+            'simulation-styles' => $assets_path . '/css/homepage/simulation.css',
+            'diff-styles' => $assets_path . '/css/homepage/diff.css',
+            'testimonies-styles' => $assets_path . '/css/homepage/testimonies.css',
+            'thought-styles' => $assets_path . '/css/homepage/thought.css',
+            'cta-styles' => $assets_path . '/css/homepage/cta.css',
+            'upcoming-events-styles' => $assets_path . '/css/homepage/upcoming-events.css',
+            'news-styles' => $assets_path . '/css/homepage/news.css',
+            'faq-styles' => $assets_path . '/css/homepage/faq.css'
+        ],
+        'js' => [
+            'homepage-scripts' => $assets_path . '/js/homepage/homepage.js',
+            'hero-scripts' => $assets_path . '/js/homepage/hero.js',
+            'testimonies-scripts' => $assets_path . '/js/homepage/testimonies.js',
+            'upcoming-events-scripts' => $assets_path . '/js/homepage/upcoming-events.js'
+        ]
+    ];
+}
+
+
+/**
+ * Helper function to enqueue a child theme stylesheet with versioning.
+ */
+function crisisacademy_enqueue_style($handle, $path, $media = 'all')
+{
+    $uri = get_stylesheet_directory_uri();
+    $dir = get_stylesheet_directory();
+    $src = (strpos($path, 'http') === 0) ? $path : $uri . $path;
+    $ver = (strpos($path, 'http') === 0) ? '1.0' : (file_exists($dir . $path) ? filemtime($dir . $path) : time());
+
+    wp_enqueue_style($handle, $src, [], $ver, $media);
+}
+
+/**
+ * Helper function to enqueue a child theme script with versioning and dependency support.
+ */
+function crisisacademy_enqueue_script($handle, $path, $deps = [])
+{
+    $uri = get_stylesheet_directory_uri();
+    $dir = get_stylesheet_directory();
+    $src = (strpos($path, 'http') === 0) ? $path : $uri . $path;
+    $ver = (strpos($path, 'http') === 0) ? '1.0' : (file_exists($dir . $path) ? filemtime($dir . $path) : time());
+
+    wp_enqueue_script($handle, $src, $deps, $ver, true);
+}
+
+
+
+/**
+ * Crisis Academy homepage templates
+ */
 function crisisacademy_homepage_templates() {
     if (is_page_template('templates/crisisacademy-homepage.php')) {
         $a = avante_get_assets();
@@ -81,22 +141,54 @@ function crisisacademy_homepage_templates() {
 }
 add_action( 'wp_enqueue_scripts', 'crisisacademy_homepage_templates' );
 
-function crisis_academy_contact_templates() {
-    if (is_page_template('templates/crisis-academy-contact.php')) {
-        $a = avante_get_assets();
+/**
+ * Corporate Crisis Academy Homepage
+ * 
+ * Homepage content:
+ * - hero
+ * 
+ */
+function homepage_templates() {
+    if (is_page_template('templates/corporate-crisisacademy-homepage.php')) {
+        $a = crisisacademy_get_assets();
+        $b = avante_get_assets();
 
         function unload_parts_header() {
             wp_dequeue_style( 'page' );
         }
         add_action( 'wp_enqueue_scripts', 'unload_parts_header', 100 );
 
-        avante_enqueue_style('crisis-academy-contact', $a['css']['crisis-academy-contact']);
-        avante_enqueue_script('gsap', $a['js']['gsap']);
-        avante_enqueue_script('scrolltrigger', $a['js']['scrolltrigger'], ['gsap']);
-        avante_enqueue_script('parallax-script', $a['js']['parallax-script'], ['gsap', 'scrolltrigger']);
+        crisisacademy_enqueue_style('homepage', $a['css']['homepage']);
+        crisisacademy_enqueue_style('hero-styles', $a['css']['hero-styles']);
+        crisisacademy_enqueue_style('trouble-styles', $a['css']['trouble-styles']);
+        crisisacademy_enqueue_style('hearings-styles', $a['css']['hearings-styles']);
+        crisisacademy_enqueue_style('wcu-styles', $a['css']['wcu-styles']);
+        crisisacademy_enqueue_style('founder-styles', $a['css']['founder-styles']);
+        crisisacademy_enqueue_style('program-styles', $a['css']['program-styles']);
+        avante_enqueue_style('quotes-slideshow-styles', $b['css']['quotes-slideshow-styles']);
+        crisisacademy_enqueue_style('simulation-styles', $a['css']['simulation-styles']);
+        crisisacademy_enqueue_style('diff-styles', $a['css']['diff-styles']);
+        crisisacademy_enqueue_style('testimonies-styles', $a['css']['testimonies-styles']);
+        crisisacademy_enqueue_style('thought-styles', $a['css']['thought-styles']);
+        crisisacademy_enqueue_style('cta-styles', $a['css']['cta-styles']);
+        crisisacademy_enqueue_style('upcoming-events-styles', $a['css']['upcoming-events-styles']);
+        crisisacademy_enqueue_style('news-styles', $a['css']['news-styles']);
+        avante_enqueue_style('posts-styles', $b['css']['posts-styles']);
+        avante_enqueue_style('archive-design', $b['css']['archive-design']);
+        crisisacademy_enqueue_style('faq-styles', $a['css']['faq-styles']);
+
+        crisisacademy_enqueue_script('homepage-scripts', $a['js']['homepage-scripts']);
+        crisisacademy_enqueue_script('hero-scripts', $a['js']['hero-scripts']);
+        avante_enqueue_script('quotes-slideshow-scripts', $b['js']['quotes-slideshow-script']);
+        avante_enqueue_script('cert-slideshow-script', $b['js']['cert-slideshow-script']);
+        crisisacademy_enqueue_script('testimonies-scripts', $a['js']['testimonies-scripts']);
+        avante_enqueue_script('ws-script', $b['js']['ws-script']);
+        avante_enqueue_script('animate-in', $b['js']['animate-in']);
+        avante_enqueue_script('posts-scripts', $b['js']['posts-scripts']);
+        avante_enqueue_script('faq-accordion-toggle-script', $b['js']['faq-accordion-toggle-script']);
     }
 }
-add_action( 'wp_enqueue_scripts', 'crisis_academy_contact_templates' );
+add_action( 'wp_enqueue_scripts', 'homepage_templates' );
 
 /*
  * =========================================================================

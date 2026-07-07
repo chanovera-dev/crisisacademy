@@ -1,0 +1,378 @@
+/* ═══════════════════════════════════════════════════════════
+   #hearings — Interactive Radar & Split Panel Design (Dark Theme)
+   Modern Stripe-like presentation with technical sonar radar and dynamic tabs
+   ═══════════════════════════════════════════════════════════ */
+
+#hearings {
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--wp--preset--color--footer-background);
+
+    /* Background glow */
+    &::before {
+        content: '';
+        position: absolute;
+        width: 700px;
+        height: 700px;
+        top: 50%;
+        left: 20%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background: radial-gradient(circle, color-mix(in srgb, var(--wp--preset--color--primary) 12%, transparent) 0%, transparent 70%);
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image:
+            linear-gradient(rgba(30, 144, 255, 0.25) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(30, 144, 255, 0.25) 1px, transparent 1px);
+        background-size: 100px 100px;
+        background-position: center center;
+        mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+        z-index: 0;
+        opacity: 0.25;
+        pointer-events: none;
+    }
+
+    & .content {
+        position: relative;
+        z-index: 1;
+    }
+
+    /* ── Split Layout ────────────────────────────────── */
+    & .hearings-split {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+        align-items: start;
+        width: 100%;
+
+        @media (width >=1024px) {
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 5rem;
+        }
+    }
+
+    /* ── Left Column: Visual & Header ────────────────── */
+    & .hearings-visual {
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
+
+        @media (width >=1024px) {
+            position: sticky;
+            top: 130px;
+        }
+
+        & .visual-header {
+            text-align: left;
+
+            & .pretext {
+                background: color-mix(in srgb, #cf2e2e 20%, transparent);
+                color: var(--wp--preset--color--base);
+                border-color: color-mix(in srgb, #cf2e2e 50%, transparent);
+            }
+
+            & h2 {
+                font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+                line-height: 1.25;
+                font-weight: 600;
+                color: #ffffff;
+                margin-top: 1rem;
+            }
+        }
+    }
+
+    /* ── Radar Visualizer ────────────────────────────── */
+    & .radar-container {
+        position: relative;
+        width: 100%;
+        max-width: 450px;
+        aspect-ratio: 1 / 1;
+        margin-inline: auto;
+        border-radius: 50%;
+        border: 1px solid color-mix(in srgb, #ffffff, transparent 90%);
+        background: color-mix(in srgb, var(--wp--preset--color--footer-background), transparent 40%);
+        box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.4);
+        mask-image: radial-gradient(circle, black 40%, transparent 100%);
+        display: grid;
+        place-items: center;
+    }
+
+    & .radar-circle {
+        position: absolute;
+        border-radius: 50%;
+        border: 1px dashed color-mix(in srgb, #ffffff, transparent 92%);
+        pointer-events: none;
+
+        &.circle-1 {
+            width: 75%;
+            height: 75%;
+        }
+
+        &.circle-2 {
+            width: 50%;
+            height: 50%;
+        }
+
+        &.circle-3 {
+            width: 25%;
+            height: 25%;
+        }
+    }
+
+    & .radar-crosshair-h,
+    & .radar-crosshair-v {
+        position: absolute;
+        background: color-mix(in srgb, #ffffff, transparent 94%);
+        pointer-events: none;
+    }
+
+    & .radar-crosshair-h {
+        width: 90%;
+        height: 1px;
+    }
+
+    & .radar-crosshair-v {
+        width: 1px;
+        height: 90%;
+    }
+
+    /* Radar Pulse Line */
+    & .radar-pulse {
+        position: absolute;
+        width: 90%;
+        height: 90%;
+        border-radius: 50%;
+        background: conic-gradient(from 0deg, color-mix(in srgb, var(--wp--preset--color--focus), transparent 85%), transparent 40%);
+        pointer-events: none;
+        animation: radarSweep 8s linear infinite;
+        z-index: 1;
+    }
+
+    /* Quadrant highlighting */
+    & .radar-quadrant {
+        position: absolute;
+        width: 44%;
+        height: 44%;
+        display: grid;
+        place-items: center;
+        transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        z-index: 2;
+        border-radius: 8px;
+        border: 1px solid transparent;
+
+        & .quadrant-label {
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            color: color-mix(in srgb, #ffffff, transparent 60%);
+            transition: all 0.4s ease;
+        }
+
+        /* Positions */
+        &.q-comms {
+            top: 6%;
+            right: 6%;
+            border-top-right-radius: 50%;
+        }
+
+        &.q-hr {
+            top: 6%;
+            left: 6%;
+            border-top-left-radius: 50%;
+        }
+
+        &.q-csuite {
+            bottom: 6%;
+            right: 6%;
+            border-bottom-right-radius: 50%;
+        }
+
+        &.q-ops {
+            bottom: 6%;
+            left: 6%;
+            border-bottom-left-radius: 50%;
+        }
+
+        /* Highlighted/Active State */
+        &.active {
+            background: color-mix(in srgb, var(--wp--preset--color--focus) 8%, transparent);
+            border-color: color-mix(in srgb, var(--wp--preset--color--focus) 25%, transparent);
+            box-shadow: inset 0 0 20px color-mix(in srgb, var(--wp--preset--color--focus) 6%, transparent);
+
+            & .quadrant-label {
+                color: var(--wp--preset--color--focus);
+                text-shadow: 0 0 10px color-mix(in srgb, var(--wp--preset--color--focus) 40%, transparent);
+                transform: scale(1.05);
+            }
+        }
+    }
+
+    /* ── Right Column: Stacked Panels ───────────────── */
+    & .hearings-interactive-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    & .hearing-panel {
+        background: color-mix(in srgb, var(--wp--preset--color--footer-background), transparent 40%);
+        border: 1px solid color-mix(in srgb, #ffffff, transparent 92%);
+        border-radius: 1rem;
+        padding: 1.5rem 1.75rem;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 1.5rem;
+        align-items: start;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+
+        & .panel-number {
+            font-family: var(--wp--preset--font-family--manrope);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: color-mix(in srgb, #ffffff, transparent 70%);
+            transition: color 0.3s ease;
+        }
+
+        & .panel-main {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+
+            & h3 {
+                font-size: 1.15rem;
+                font-weight: 700;
+                margin: 0;
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                color: #ffffff;
+                transition: color 0.3s ease;
+
+                & .badge {
+                    font-size: 0.65rem;
+                    font-weight: 700;
+                    letter-spacing: 0.04em;
+                    text-transform: uppercase;
+                    padding: 0.15rem 0.5rem;
+                    border-radius: 4px;
+                    background: color-mix(in srgb, #ffffff, transparent 90%);
+                    color: color-mix(in srgb, #ffffff, transparent 30%);
+                    border: 1px solid color-mix(in srgb, #ffffff, transparent 86%);
+                    transition: all 0.3s ease;
+                }
+            }
+
+            & .panel-expandable {
+                display: grid;
+                grid-template-rows: 0fr;
+                transition: grid-template-rows 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+                overflow: hidden;
+
+                & p {
+                    font-size: 0.95rem;
+                    line-height: 1.6;
+                    color: color-mix(in srgb, #ffffff, transparent 35%);
+                    margin: 0;
+                    min-height: 0;
+                    transition: color 0.3s ease;
+                }
+            }
+        }
+
+        & .panel-arrow {
+            color: color-mix(in srgb, #ffffff, transparent 70%);
+            display: grid;
+            place-items: center;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+
+            & svg {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        /* ── Panel States (Active / Hover) ── */
+        &:hover {
+            border-color: color-mix(in srgb, var(--wp--preset--color--focus) 30%, transparent);
+            background: var(--wp--preset--color--contrast);
+
+            & .panel-number {
+                color: var(--wp--preset--color--focus);
+            }
+
+            & .panel-arrow {
+                color: var(--wp--preset--color--focus);
+                transform: translateX(3px);
+            }
+        }
+
+        &.active {
+            border-color: color-mix(in srgb, var(--wp--preset--color--focus) 60%, transparent);
+            background: var(--wp--preset--color--contrast);
+            box-shadow:
+                0 15px 30px -10px rgba(0, 0, 0, 0.4),
+                inset 0 0 20px color-mix(in srgb, var(--wp--preset--color--focus) 5%, transparent);
+
+            & .panel-number {
+                color: var(--wp--preset--color--focus);
+            }
+
+            & h3 {
+                color: var(--wp--preset--color--focus);
+
+                & .badge {
+                    background: color-mix(in srgb, var(--wp--preset--color--focus) 15%, transparent);
+                    color: var(--wp--preset--color--focus);
+                    border-color: color-mix(in srgb, var(--wp--preset--color--focus) 40%, transparent);
+                }
+            }
+
+            & .panel-expandable {
+                grid-template-rows: 1fr;
+                margin-top: 0.5rem;
+
+                & p {
+                    color: color-mix(in srgb, #ffffff, transparent 15%);
+                }
+            }
+
+            & .panel-arrow {
+                color: var(--wp--preset--color--focus);
+                transform: rotate(90deg);
+            }
+        }
+    }
+}
+
+/* ── Sweep Animation ── */
+@keyframes radarSweep {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* ── Squircle Support ── */
+.is-chromium {
+    & #hearings .hearing-panel {
+        border-radius: 1.25rem !important;
+        corner-shape: squircle;
+    }
+}

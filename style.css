@@ -13,12 +13,6 @@ Text Domain:  thecrisisacademy
 
 /* Custom styles for The Crisis Academy child theme can be added below */
 
-.page-template-crisisacademy-homepage {
-    .logo {
-        --color--logo: var(--wp--preset--color--base) !important;
-    }
-}
-
 .logo {
     --color--logo: var(--wp--preset--color--contrast);
     --s: 30px;

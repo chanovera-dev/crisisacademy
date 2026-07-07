@@ -1,0 +1,305 @@
+/* ═══════════════════════════════════════════════════════════
+   #testimonies — Overlapping Coverflow Testimonials Carousel
+   Smooth infinite 3D loop with top avatars tracking (Light Theme)
+   ═══════════════════════════════════════════════════════════ */
+
+#testimonies {
+    background-color: #fdfcfb;
+    color: var(--wp--preset--color--contrast);
+    position: relative;
+    overflow: hidden;
+
+    /* 10% Fade Mask at Left & Right Edges */
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+
+    /* ── Glowing mesh gradient spots ── */
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image:
+            radial-gradient(circle at 10% 10%, color-mix(in srgb, var(--wp--preset--color--primary) 8%, transparent) 0%, transparent 60%),
+            radial-gradient(circle at 90% 15%, color-mix(in srgb, var(--wp--preset--color--focus) 10%, transparent) 0%, transparent 60%),
+            radial-gradient(circle at 50% 90%, color-mix(in srgb, var(--wp--preset--color--primary) 6%, transparent) 0%, transparent 50%);
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    /* ── Tech circuit communication network ── */
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        opacity: 0.5;
+        background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23f26a23' stroke-width='0.5' stroke-opacity='0.15' fill='none'%3E%3Ccircle cx='10' cy='10' r='2' fill='%23f26a23' fill-opacity='0.2'/%3E%3Cpath d='M10 10h30v30h30'/%3E%3Ccircle cx='70' cy='40' r='2' fill='%23f26a23' fill-opacity='0.2'/%3E%3Cpath d='M10 10v40h40v40h30'/%3E%3Ccircle cx='90' cy='90' r='2' fill='%23f26a23' fill-opacity='0.2'/%3E%3C/g%3E%3C/svg%3E");
+        background-size: 150px 150px;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    & .testimonies-bg-decor {
+        display: none;
+    }
+
+    & .content {
+        position: relative;
+        z-index: 1;
+
+    }
+
+    /* Section Header */
+    & .testimonies-header {
+        text-align: center;
+        max-width: 800px;
+        margin-inline: auto;
+        margin-bottom: 2rem;
+
+        & .pretext {
+            color: var(--wp--preset--color--focus);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+
+        & h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            line-height: 1.25;
+            font-weight: 700;
+            color: var(--wp--preset--color--contrast);
+            margin-top: 0.75rem;
+
+            & span {
+                color: color-mix(in srgb, var(--wp--preset--color--contrast), transparent 35%);
+                font-weight: 500;
+            }
+        }
+    }
+
+    & .testimonies-interactive-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2.5rem;
+        position: relative;
+    }
+
+    /* Avatars Row tracking index */
+    & .testimonies-avatars-row {
+        position: relative;
+        height: 100px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0.5rem;
+    }
+
+    & .avatar-item {
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        user-select: none;
+
+        & .avatar-ring {
+            position: absolute;
+            inset: -4px;
+            border: 2px solid var(--wp--preset--color--focus);
+            border-radius: 50%;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.5s ease;
+        }
+
+        & .avatar-img-wrapper {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #ffffff;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid color-mix(in srgb, var(--wp--preset--color--contrast) 12%, transparent);
+            transition: all 0.3s ease;
+        }
+
+        &.active {
+            & .avatar-ring {
+                opacity: 1;
+                transform: scale(1);
+                box-shadow: 0 0 15px rgba(242, 106, 35, 0.2);
+            }
+
+            & .avatar-img-wrapper {
+                border-color: transparent;
+            }
+        }
+
+        &:hover:not(.active) .avatar-img-wrapper {
+            border-color: color-mix(in srgb, var(--wp--preset--color--contrast) 40%, transparent);
+            transform: scale(1.05);
+        }
+    }
+
+    /* Overlapping Cards Stack */
+    & .testimonies-cards-stack {
+        position: relative;
+        width: 100%;
+        max-width: 600px;
+        height: 290px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        perspective: 1000px;
+
+        @media (width < 768px) {
+            height: 340px;
+        }
+    }
+
+    & .testimony-card {
+        position: absolute;
+        width: 100%;
+        max-width: 540px;
+        height: 100%;
+        box-sizing: border-box;
+        background: #f2f0ed;
+        border: 1px solid color-mix(in srgb, var(--wp--preset--color--contrast) 16%, transparent);
+        border-radius: 1.25rem;
+        padding: 2.25rem 2.25rem 2rem 2.25rem;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+
+        & .quote-symbol {
+            position: absolute;
+            top: 0.5rem;
+            left: 1.5rem;
+            font-family: Georgia, serif;
+            font-size: 5rem;
+            color: var(--wp--preset--color--focus);
+            opacity: 0.08;
+            line-height: 1;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        & .testimony-text {
+            margin: 0;
+            font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+            line-height: 1.6;
+            color: color-mix(in srgb, var(--wp--preset--color--contrast) 92%, transparent);
+            font-weight: 400;
+            z-index: 1;
+        }
+
+        & .testimony-author {
+            margin-top: auto;
+
+            & h4 {
+                margin: 0;
+                font-size: 1.1rem;
+                font-weight: 700;
+                color: var(--wp--preset--color--focus);
+            }
+
+            & span {
+                font-size: 0.8rem;
+                color: color-mix(in srgb, var(--wp--preset--color--contrast) 50%, transparent);
+                margin-top: 0.25rem;
+                display: block;
+            }
+        }
+
+        &.active {
+            background: #ffffff;
+            border-color: color-mix(in srgb, var(--wp--preset--color--focus) 20%, transparent);
+            box-shadow: var(--wp--preset--shadow--post-shadow);
+        }
+    }
+
+    /* Controls Panel */
+    & .testimonies-controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 0.5rem;
+        width: 100%;
+
+        & .testi-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: var(--wp--preset--color--contrast);
+            opacity: 0.4;
+            display: grid;
+            place-items: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 1px solid color-mix(in srgb, var(--wp--preset--color--contrast) 15%, transparent);
+            transition: all 0.3s ease;
+
+            & svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            &:hover {
+                opacity: 1;
+                color: var(--wp--preset--color--focus);
+                border-color: var(--wp--preset--color--focus);
+                background-color: color-mix(in srgb, var(--wp--preset--color--focus) 6%, transparent);
+            }
+        }
+
+        & .testi-bullets {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+
+            & .bullet {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background-color: transparent;
+                border: 2px solid color-mix(in srgb, var(--wp--preset--color--contrast) 25%, transparent);
+                cursor: pointer;
+                transition: all 0.3s ease;
+
+                &.active {
+                    background-color: var(--wp--preset--color--focus);
+                    border-color: var(--wp--preset--color--focus);
+                    transform: scale(1.2);
+                }
+            }
+        }
+    }
+}
+
+/* Chromium specific squircles */
+.is-chromium {
+    & #testimonies .testimony-card {
+        border-radius: 1.5rem !important;
+        corner-shape: squircle;
+    }
+
+    & #testimonies .avatar-img-wrapper {
+        border-radius: 50% !important;
+    }
+}

@@ -1,0 +1,220 @@
+/* ═══════════════════════════════════════════════════════════
+   #diff — Crisis Academy Core Differentiators Section
+   3D Flip / Spin slideshow representation of corporate values
+   ═══════════════════════════════════════════════════════════ */
+
+#diff {
+    background-color: #ebe8e6;
+    color: var(--wp--preset--color--contrast);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background-color: var(--wp--preset--color--base);
+        z-index: 0;
+        filter: blur(150px);
+    }
+
+    /* ── Dot grid pattern overlay ── */
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(color-mix(in srgb, var(--wp--preset--color--contrast), transparent 84%) 1px, transparent 1px);
+        mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+        background-size: 32px 32px;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    & .content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 3.5rem;
+        perspective: 1200px;
+    }
+
+    /* Section Header */
+    & .diff-header {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+
+        & .pretext {
+            color: var(--wp--preset--color--focus);
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+
+        & h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            line-height: 1.25;
+            font-weight: 600;
+            color: var(--wp--preset--color--contrast);
+            margin-top: 0.75rem;
+
+            & span {
+                color: color-mix(in srgb, var(--wp--preset--color--contrast) 60%, transparent);
+                font-weight: 500;
+            }
+        }
+    }
+
+    /* 3D Flip Slideshow Container */
+    & .diff-slideshow-container {
+        position: relative;
+        z-index: 4;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        background-color: var(--wp--preset--color--base);
+        box-shadow: var(--wp--preset--shadow--post-shadow-light);
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        transform-origin: center center;
+        transform-style: preserve-3d;
+        backface-visibility: hidden;
+
+        & .slideshow--wrapper {
+            position: relative;
+            width: 100%;
+            display: grid;
+            align-items: center;
+
+            & .slideshow {
+                position: relative;
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        & .diff-slide-item {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            opacity: 0;
+            pointer-events: none;
+            padding: 1rem;
+            text-align: center;
+            transition: opacity 0.3s ease;
+
+            &.active {
+                opacity: 1;
+                pointer-events: auto;
+                position: relative;
+            }
+
+            & .diff-icon-wrapper {
+                width: 52px;
+                height: 52px;
+                border-radius: 12px;
+                background-color: color-mix(in srgb, var(--wp--preset--color--focus) 8%, transparent);
+                border: 1px solid color-mix(in srgb, var(--wp--preset--color--focus) 15%, transparent);
+                color: var(--wp--preset--color--focus);
+                display: grid;
+                place-items: center;
+                margin-inline: auto;
+                margin-bottom: 0.5rem;
+
+                & svg {
+                    width: 24px;
+                    height: 24px;
+                }
+            }
+
+            & h3 {
+                margin: 0;
+                font-size: 1.45rem;
+                font-weight: 700;
+                color: var(--wp--preset--color--contrast);
+            }
+
+            & p {
+                margin: 0;
+                font-size: 1.05rem;
+                line-height: 1.6;
+                color: color-mix(in srgb, var(--wp--preset--color--contrast) 55%, transparent);
+                max-width: 520px;
+            }
+        }
+
+        & .slideshow-bullets-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid color-mix(in srgb, var(--wp--preset--color--contrast) 6%, transparent);
+
+            & .btn-pagination {
+                background: transparent;
+                border: none;
+                cursor: pointer;
+                color: var(--wp--preset--color--contrast);
+                opacity: 0.4;
+                display: grid;
+                place-items: center;
+                width: 38px;
+                height: 38px;
+                border-radius: 50%;
+                transition: all 0.3s ease;
+
+                & svg {
+                    width: 18px;
+                    height: 18px;
+                }
+
+                &:hover {
+                    opacity: 1;
+                    color: var(--wp--preset--color--focus);
+                    border-color: var(--wp--preset--color--focus);
+                    background-color: color-mix(in srgb, var(--wp--preset--color--focus) 6%, transparent);
+                }
+            }
+
+            & .slideshow-bullets {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 12px;
+
+                & .bullet {
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    background-color: transparent;
+                    border: 2px solid color-mix(in srgb, var(--wp--preset--color--contrast) 25%, transparent);
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+
+                    &.active {
+                        background-color: var(--wp--preset--color--focus);
+                        border-color: var(--wp--preset--color--focus);
+                        transform: scale(1.15);
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Chromium specific squircles */
+.is-chromium {
+    & #diff .diff-slideshow-container {
+        border-radius: 1.5rem !important;
+        corner-shape: squircle;
+    }
+
+    & #diff .diff-icon-wrapper {
+        border-radius: .9rem !important;
+        corner-shape: squircle;
+    }
+}

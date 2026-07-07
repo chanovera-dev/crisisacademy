@@ -1,0 +1,315 @@
+/* ═══════════════════════════════════════════════════════════
+   #wcu — "Lo Que Nos Diferencia" Section (Light Theme)
+   Clean, modern comparative table with premium light dashboard aesthetic
+   ═══════════════════════════════════════════════════════════ */
+
+#wcu {
+    background-color: #ebe8e6;
+    color: var(--wp--preset--color--contrast);
+    position: relative;
+    overflow: hidden;
+
+    /* Left-bottom ambient light */
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image:
+            linear-gradient(to top, color-mix(in srgb, var(--wp--preset--color--contrast) 6%, transparent) 1px, transparent 1px),
+            linear-gradient(to right, color-mix(in srgb, var(--wp--preset--color--contrast) 6%, transparent) 1px, transparent 1px);
+        background-size: 30px 30px;
+        background-position: center top;
+        z-index: 0;
+        pointer-events: none;
+        mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+    }
+
+    /* Right-top ambient light */
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image:
+            linear-gradient(to top, color-mix(in srgb, var(--wp--preset--color--contrast) 12%, transparent) 1.5px, transparent 1.5px),
+            linear-gradient(to right, color-mix(in srgb, var(--wp--preset--color--contrast) 12%, transparent) 1.5px, transparent 1.5px);
+        background-size: 150px 150px;
+        background-position: center top;
+        z-index: 0;
+        pointer-events: none;
+        mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+    }
+
+    /* ── Layered Background Container ───────────────── */
+    & .wcu-bg-container {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        overflow: hidden;
+    }
+
+    /* Technical grid pattern */
+    & .wcu-bg-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+            linear-gradient(color-mix(in srgb, var(--wp--preset--color--contrast), transparent 97.5%) 1px, transparent 1px),
+            linear-gradient(90deg, color-mix(in srgb, var(--wp--preset--color--contrast), transparent 97.5%) 1px, transparent 1px);
+        background-size: 80px 80px;
+        background-position: center top;
+        mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+        opacity: 0.8;
+    }
+
+    /* Secondary floating glow elements */
+    & .wcu-bg-glow-1 {
+        position: absolute;
+        width: 450px;
+        height: 450px;
+        top: 25%;
+        left: 15%;
+        border-radius: 50%;
+        background: radial-gradient(circle, color-mix(in srgb, var(--wp--preset--color--focus) 6%, transparent) 0%, transparent 70%);
+        filter: blur(40px);
+    }
+
+    & .wcu-bg-glow-2 {
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        bottom: 15%;
+        right: 20%;
+        border-radius: 50%;
+        background: radial-gradient(circle, color-mix(in srgb, var(--wp--preset--color--primary) 5%, transparent) 0%, transparent 70%);
+        filter: blur(50px);
+    }
+
+    & .content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: clamp(3rem, 5vw, 5rem);
+    }
+
+    /* ── Header ─────────────────────────────────────── */
+    & .wcu-header {
+        text-align: center;
+        max-width: 800px;
+
+        & h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            line-height: 1.25;
+            font-weight: 600;
+            color: var(--wp--preset--color--contrast);
+            margin-top: 1rem;
+        }
+    }
+
+    /* ── Comparison Container ───────────────────────── */
+    & .comparison-container {
+        width: 100%;
+        background: color-mix(in srgb, var(--wp--preset--color--base), transparent 30%);
+        border: 1px solid color-mix(in srgb, var(--wp--preset--color--contrast), transparent 90%);
+        border-radius: 1.25rem;
+        box-shadow:
+            0 1px 3px rgba(0, 0, 0, 0.05),
+            0 10px 30px -10px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+    }
+
+    & .comparison-grid {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    /* ── Rows & Columns ─────────────────────────────── */
+    & .grid-header,
+    & .grid-row {
+        display: grid;
+        grid-template-columns: 1fr;
+        border-bottom: 1px solid color-mix(in srgb, var(--wp--preset--color--contrast), transparent 92%);
+        align-items: center;
+
+        @media (width >=768px) {
+            grid-template-columns: 2fr 1fr 1.1fr;
+        }
+    }
+
+    & .grid-header {
+        background: color-mix(in srgb, var(--wp--preset--color--contrast), transparent 97%);
+        font-weight: 800;
+        font-size: 0.85rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: color-mix(in srgb, var(--wp--preset--color--contrast), transparent 30%);
+        display: none;
+        /* Stacked layout on mobile */
+
+        @media (width >=768px) {
+            display: grid;
+        }
+    }
+
+    & .grid-row {
+        gap: 0.75rem;
+        transition: background 0.3s ease;
+
+        @media (width >=768px) {
+            gap: 0;
+        }
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        &:hover {
+            background: color-mix(in srgb, var(--wp--preset--color--contrast), transparent 98%);
+        }
+    }
+
+    /* Columns */
+    & .col-feature {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        gap: 0.25rem;
+
+        & strong {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--wp--preset--color--contrast);
+        }
+
+        & span {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: color-mix(in srgb, var(--wp--preset--color--contrast), transparent 40%);
+        }
+    }
+
+    & .col-agency,
+    & .col-academy {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+        padding-block: 0.25rem;
+
+        @media (width >=768px) {
+            justify-content: center;
+            padding-block: 0;
+        }
+
+        /* Label on mobile, hidden on desktop */
+        & .status-text {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: color-mix(in srgb, var(--wp--preset--color--contrast), transparent 50%);
+
+            @media (width >=768px) {
+                display: none;
+            }
+        }
+    }
+
+    /* Agency column styling (distinct muted background) */
+    & .col-agency {
+        @media (width >=768px) {
+            background: color-mix(in srgb, var(--wp--preset--color--contrast) 3%, var(--wp--preset--color--base));
+            align-self: stretch;
+            display: flex;
+            border-left: 1px solid color-mix(in srgb, var(--wp--preset--color--contrast), transparent 93%);
+        }
+    }
+
+    /* Academy column highlights (active focus background) */
+    & .col-academy {
+        @media (width >=768px) {
+            background: color-mix(in srgb, var(--wp--preset--color--focus) 4%, var(--wp--preset--color--base));
+            align-self: stretch;
+            display: flex;
+            border-left: 1px solid color-mix(in srgb, var(--wp--preset--color--focus), transparent 90%);
+            border-right: 1px solid color-mix(in srgb, var(--wp--preset--color--focus), transparent 90%);
+        }
+    }
+
+    /* Icons and statuses */
+    & .status-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        font-weight: 800;
+        font-size: 0.95rem;
+        color: color-mix(in srgb, var(--wp--preset--color--contrast), transparent 70%);
+
+        & svg {
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    & .is-check {
+        & .status-icon {
+            background: color-mix(in srgb, var(--wp--preset--color--focus) 15%, transparent);
+            border: 1px solid color-mix(in srgb, var(--wp--preset--color--focus) 30%, transparent);
+            color: var(--wp--preset--color--focus);
+        }
+    }
+
+    & .col-academy.is-check {
+        & .status-icon {
+            background: var(--wp--preset--color--focus);
+            border-color: var(--wp--preset--color--focus);
+            color: #ffffff;
+            box-shadow: 0 0 10px color-mix(in srgb, var(--wp--preset--color--focus) 40%, transparent);
+        }
+    }
+
+    & .is-empty {
+        & .status-icon {
+            color: color-mix(in srgb, var(--wp--preset--color--contrast), transparent 80%);
+        }
+    }
+
+    /* ── Conclusion Card ────────────────────────────── */
+    & .wcu-conclusion {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        & .conclusion-main {
+            font-size: clamp(1.4rem, 2.5vw, 2.1rem);
+            font-weight: 700;
+            color: color-mix(in srgb, var(--wp--preset--color--contrast), transparent 30%);
+            margin: 0;
+        }
+
+        & .conclusion-highlight {
+            font-size: clamp(2rem, 4.5vw, 3rem);
+            font-weight: 600;
+            color: var(--wp--preset--color--focus);
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            margin: 0;
+            text-shadow: 0 10px 20px color-mix(in srgb, var(--wp--preset--color--focus), transparent 90%);
+        }
+    }
+}
+
+/* ── Chromium Squircle Support ── */
+.is-chromium {
+    & #wcu .comparison-container {
+        border-radius: 1.5rem !important;
+        corner-shape: squircle;
+    }
+}
