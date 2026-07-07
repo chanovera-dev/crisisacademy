@@ -10,7 +10,7 @@
                     <div class="corner-reticle top-right"></div>
                     <div class="corner-reticle bottom-left"></div>
                     <div class="corner-reticle bottom-right"></div>
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/carolina-eslava.png" alt="Carolina Eslava - Fundadora" class="founder-photo" loading="lazy">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/carolina-eslava.jpeg" alt="Carolina Eslava - Fundadora" class="founder-photo" loading="lazy">
                 </div>
             </div>
 
