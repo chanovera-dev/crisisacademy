@@ -2,10 +2,10 @@
     <div class="hero-glow"></div>
     <div class="content">
         <div class="text">
-            <span class="pretext">Comunicación y Manejo de Crisis • Programa In-Company</span>
-            <h1 class="page-title">Tu empresa tiene 60 minutos. ¿Está preparada para responder?</h1>
-            <h2 class="page-subtitle">Una crisis mal manejada no destruye solo la reputación, destruye las metas del negocio.</h2>
-            <div class="page-description">
+            <span class="pretext object-reveal">Comunicación y Manejo de Crisis • Programa In-Company</span>
+            <h1 class="page-title object-reveal">Tu empresa tiene 60 minutos. ¿Está preparada para responder?</h1>
+            <h2 class="page-subtitle object-reveal">Una crisis mal manejada no destruye solo la reputación, destruye las metas del negocio.</h2>
+            <div class="page-description object-reveal">
                 <p>En los primeros 60 minutos una crisis se contiene... o se sale de control.</p>
                 <p>Después solo se administra el daño.</p>
             </div>

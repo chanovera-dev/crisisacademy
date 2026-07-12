@@ -24,7 +24,7 @@ $title = get_field('upcoming_events_title');
         <div class="events-container">
             <header class="events-header">
                 <?php if ($pretext) : ?>
-                    <span class="span-pretext pretext-reveal">
+                    <span class="pretext pretext-reveal">
                         <?= avante_get_icon('calendar'); ?>
                         <?= esc_html($pretext); ?>
                     </span>

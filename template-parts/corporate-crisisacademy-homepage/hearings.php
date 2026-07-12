@@ -5,11 +5,11 @@
             <!-- Left Side: Interactive Radar Visualizer -->
             <div class="hearings-visual">
                 <div class="visual-header">
-                    <span class="pretext">Impacto 360°</span>
-                    <h2>Una crisis de reputación no es solo un asunto de comunicación.</h2>
+                    <span class="pretext pretext-reveal">Impacto 360°</span>
+                    <h2 class="title-reveal">Una crisis de reputación no es solo un asunto de comunicación.</h2>
                 </div>
                 
-                <div class="radar-container">
+                <div class="radar-container card-reveal">
                     <div class="radar-circle circle-1"></div>
                     <div class="radar-circle circle-2"></div>
                     <div class="radar-circle circle-3"></div>
@@ -35,7 +35,7 @@
             </div>
 
             <!-- Right Side: Interactive Stacked Panels -->
-            <div class="hearings-interactive-list">
+            <div class="hearings-interactive-list card-reveal">
                 <div class="hearing-panel" data-department="comms">
                     <div class="panel-number">01</div>
                     <div class="panel-main">

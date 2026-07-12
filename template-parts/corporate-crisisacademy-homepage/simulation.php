@@ -6,9 +6,9 @@
     </div>
     <div class="content">
         <div class="simulation-left">
-            <span class="pretext">Entrenamiento Inmersivo</span>
-            <h2>Antes de comenzar,<br><span>casi siempre encontramos los mismos problemas.</span></h2>
-            <p class="simulation-intro-desc">
+            <span class="pretext pretext-reveal">Entrenamiento Inmersivo</span>
+            <h2 class="title-reveal">Antes de comenzar,<br><span>casi siempre encontramos los mismos problemas.</span></h2>
+            <p class="simulation-intro-desc object-reveal">
                 Las organizaciones suelen creer que están preparadas hasta que se enfrentan a un incidente real. Nuestro simulador interactivo recrea la presión de una crisis digital y mediática para evaluar y fortalecer su protocolo de respuesta en minutos.
             </p>
             <?php
@@ -16,7 +16,7 @@
                 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
             }
             if ( is_plugin_active( 'crisis-simulator/simulador-de-crisis.php' ) ) : ?>
-                <div class="cta-wrapper">
+                <div class="cta-wrapper object-reveal">
                     <a href="<?php echo esc_url( home_url( '/simulador-de-crisis/' ) ); ?>" class="btn-simulator-link btn primary">
                         <svg class="terminal-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="4 17 10 11 4 5"/>
@@ -29,7 +29,7 @@
         </div>
         
         <div class="simulation-right">
-            <div class="vulnerabilities-panel">
+            <div class="vulnerabilities-panel card-reveal">
                 <div class="panel-header">
                     <div class="panel-dot dot-red"></div>
                     <div class="panel-dot dot-yellow"></div>

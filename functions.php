@@ -191,6 +191,25 @@ function homepage_templates() {
         avante_enqueue_script('animate-in', $b['js']['animate-in']);
         avante_enqueue_script('posts-scripts', $b['js']['posts-scripts']);
         avante_enqueue_script('faq-accordion-toggle-script', $b['js']['faq-accordion-toggle-script']);
+        avante_enqueue_script('sticky-overlap-efect-script', $b['js']['sticky-overlap-efect-script']);
+
+        // Añadir atributo defer a scripts pesados y secundarios para evitar bloqueo de renderizado
+        add_filter('script_loader_tag', function($tag, $handle, $src) {
+            $defer_scripts = [
+                'quotes-slideshow-script',
+                'cert-slideshow-script',
+                'posts-scripts',
+                'ws-script',
+                'faq-accordion-toggle-script',
+                'sticky-overlap-efect-script',
+            ];
+            if (in_array($handle, $defer_scripts)) {
+                if (false === strpos($tag, 'defer')) {
+                    $tag = str_replace(' src=', ' defer src=', $tag);
+                }
+            }
+            return $tag;
+        }, 10, 3);
     }
 }
 add_action( 'wp_enqueue_scripts', 'homepage_templates' );

@@ -4,7 +4,7 @@
         <div class="founder-grid">
             
             <!-- Left Side: Elegant Portrait Photo -->
-            <div class="founder-visual">
+            <div class="founder-visual card-reveal">
                 <div class="visual-frame">
                     <div class="corner-reticle top-left"></div>
                     <div class="corner-reticle top-right"></div>
@@ -16,18 +16,18 @@
 
             <!-- Right Side: Content Bio & Methodology -->
             <div class="founder-info">
-                <span class="pretext">Liderazgo Académico</span>
-                <h2 class="founder-name">Carolina Eslava</h2>
-                <div class="founder-role">Fundadora & Directora de The Crisis Academy</div>
+                <span class="pretext pretext-reveal">Liderazgo Académico</span>
+                <h2 class="founder-name title-reveal">Carolina Eslava</h2>
+                <div class="founder-role object-reveal">Fundadora & Directora de The Crisis Academy</div>
 
-                <div class="founder-quote">
+                <div class="founder-quote object-reveal">
                     <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
                     </svg>
                     <p>25 años formando y preparando comités de crisis en multinacionales frente a escenarios de alta complejidad operativa y mediática.</p>
                 </div>
 
-                <div class="founder-methodology">
+                <div class="founder-methodology object-reveal">
                     <h3>Metodología Basada en Investigación Científica</h3>
                     <div class="methodology-list">
                         <!-- Mitroff & Benoit -->
@@ -77,7 +77,7 @@
                 </div>
 
                 <!-- Big Callout Stat -->
-                <div class="founder-counter">
+                <div class="founder-counter object-reveal">
                     <div class="counter-number">+2,000</div>
                     <div class="counter-label">Ejecutivos entrenados bajo simulación de crisis activa en toda la región.</div>
                 </div>

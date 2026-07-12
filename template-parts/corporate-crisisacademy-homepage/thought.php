@@ -2,13 +2,13 @@
     <div class="content thought-container">
         <!-- Section Header -->
         <div class="thought-header">
-            <h2 class="thought-title">¿Es este programa para tu organización?</h2>
-            <div class="thought-divider"></div>
+            <h2 class="thought-title title-reveal">¿Es este programa para tu organización?</h2>
+            <div class="thought-divider object-reveal"></div>
         </div>
 
         <div class="thought-grid">
             <!-- Column 1: Perfiles -->
-            <div class="thought-col col-profiles">
+            <div class="thought-col col-profiles card-reveal">
                 <h3 class="col-title">Perfiles</h3>
                 <ul class="profiles-list">
                     <li>
@@ -31,7 +31,7 @@
             </div>
 
             <!-- Column 2: Sectores Clave -->
-            <div class="thought-col col-sectors">
+            <div class="thought-col col-sectors card-reveal">
                 <h3 class="col-title">Sectores Clave</h3>
                 <div class="sectors-list">
                     <div class="sector-item"><span class="sector-num">01</span><span class="sector-name">Manufactura</span></div>
@@ -44,7 +44,7 @@
             </div>
 
             <!-- Column 3: Manifiesto -->
-            <div class="thought-col col-manifesto">
+            <div class="thought-col col-manifesto card-reveal">
                 <div class="manifesto-editorial-box">
                     <span class="quote-mark">“</span>
                     <h4 class="manifesto-heading">No es un curso para aprender teoría.</h4>

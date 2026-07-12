@@ -55,7 +55,7 @@ $cta_avatar = get_field('homepage_faq_cta_avatar')['url'] ?? 'https://i.pravatar
             </div>
 
             <!-- Right Column (Accordion) -->
-            <div class="faq-column-accordion">
+            <div class="faq-column-accordion card-reveal">
                 <div class="accordion-container">
                     <?php if (have_rows('homepage_faqs')) : ?>
                         <?php while (have_rows('homepage_faqs')) : the_row();

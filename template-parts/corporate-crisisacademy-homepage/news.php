@@ -22,7 +22,7 @@ $wp_query = new WP_Query($args);
     <div class="content">
         
         <header class="section-header">
-            <span class="span-pretext pretext-reveal">Centro de Inteligencia</span>
+            <span class="pretext pretext-reveal">Centro de Inteligencia</span>
             <h2 class="title-section title-reveal">Actualidad Global y Análisis</h2>
             <p class="description-section object-reveal">Mantente informado de los últimos eventos, análisis e impacto de crisis y escándalos.</p>
         </header>
@@ -63,7 +63,7 @@ $wp_query = new WP_Query($args);
         
         $format_strings = get_post_format_strings();
         ?>
-        <div class="news-filters">
+        <div class="news-filters object-reveal">
             <button class="news-filter-btn active" data-format="all"><?= esc_html__('Todos', 'avante'); ?></button>
             
             <?php if ($has_standard) : ?>
@@ -78,7 +78,7 @@ $wp_query = new WP_Query($args);
             <?php endforeach; ?>
         </div>
 
-        <div id="news-results" class="news-results-container">
+        <div id="news-results" class="news-results-container card-reveal">
             <?php
             // Llama al template part de loop del tema
             get_template_part('templates/archive/wp', 'loop');

@@ -4,11 +4,11 @@
     </div>
     <div class="content">
         <div class="testimonies-header">
-            <span class="pretext">Testimonios</span>
-            <h2>Voces de líderes que ya<br><span>se han entrenado con nosotros</span></h2>
+            <span class="pretext pretext-reveal">Testimonios</span>
+            <h2 class="title-reveal">Voces de líderes que ya<br><span>se han entrenado con nosotros</span></h2>
         </div>
 
-        <div class="testimonies-interactive-container">
+        <div class="testimonies-interactive-container card-reveal">
             <!-- 7 Avatars at the top -->
             <div class="testimonies-avatars-row">
                 <div class="avatar-item" data-index="0">
