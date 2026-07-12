@@ -8,7 +8,10 @@ if (!defined('ABSPATH')) {
  * Enqueue child theme styles.
  */
 function thecrisisacademy_enqueue_styles() {
-    wp_enqueue_style('thecrisisacademy-style', get_stylesheet_uri(), array('global'), wp_get_theme()->get('Version'));
+    $theme_ver = wp_get_theme()->get('Version');
+    $style_path = get_stylesheet_directory() . '/style.css';
+    $ver = file_exists($style_path) ? filemtime($style_path) : $theme_ver;
+    wp_enqueue_style('thecrisisacademy-style', get_stylesheet_uri(), array('global'), $ver);
 }
 add_action('wp_enqueue_scripts', 'thecrisisacademy_enqueue_styles', 20);
 

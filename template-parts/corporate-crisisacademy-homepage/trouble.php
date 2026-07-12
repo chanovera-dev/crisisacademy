@@ -50,6 +50,8 @@
                 </div>
             </div>
 
+            <div>Mientras tanto ...</div>
+
             <div class="trouble-timeline">
                 <div class="timeline-line" aria-hidden="true"></div>
 
