@@ -41,7 +41,8 @@ function crisisacademy_get_assets()
             'homepage-scripts' => $assets_path . '/js/homepage/homepage.js',
             'hero-scripts' => $assets_path . '/js/homepage/hero.js',
             'testimonies-scripts' => $assets_path . '/js/homepage/testimonies.js',
-            'upcoming-events-scripts' => $assets_path . '/js/homepage/upcoming-events.js'
+            'upcoming-events-scripts' => $assets_path . '/js/homepage/upcoming-events.js',
+            'down-chart-scripts' => $assets_path . '/js/homepage/down-chart.js'
         ]
     ];
 }
@@ -179,6 +180,7 @@ function homepage_templates() {
 
         crisisacademy_enqueue_script('homepage-scripts', $a['js']['homepage-scripts']);
         crisisacademy_enqueue_script('hero-scripts', $a['js']['hero-scripts']);
+        crisisacademy_enqueue_script('down-chart-scripts', $a['js']['down-chart-scripts']);
         avante_enqueue_script('quotes-slideshow-scripts', $b['js']['quotes-slideshow-script']);
         avante_enqueue_script('cert-slideshow-script', $b['js']['cert-slideshow-script']);
         crisisacademy_enqueue_script('testimonies-scripts', $a['js']['testimonies-scripts']);
