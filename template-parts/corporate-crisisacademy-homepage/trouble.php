@@ -2,7 +2,7 @@
     <div class="content">
         <div class="trouble-header">
             <span class="pretext">El problema</span>
-            <h2>La mayoría de las empresas descubre que no tiene un protocolo... <em>cuando ya es demasiado tarde.</em></h2>
+            <h2>Muchas empresas descubren que sus protocolos son del siglo pasado... <br><em>cuando ya es demasiado tarde.</em></h2>
         </div>
 
         <div class="timelines">
@@ -25,7 +25,7 @@
                     </div>
                     <div class="item-content">
                         <span class="item-dept">Dirección</span>
-                        <p>Espera información sin saber a quién pedirla</p>
+                        <p>Requiere información verificada en medio del caos</p>
                     </div>
                 </div>
 
