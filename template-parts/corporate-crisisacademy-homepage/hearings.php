@@ -54,7 +54,7 @@
                     <div class="panel-main">
                         <h3>RH / D.O. <span class="badge">Cultura</span></h3>
                         <div class="panel-expandable">
-                            <p>Una crisis pone a prueba la cultura, la comunicación interna y el liderazgo. Mantener la alineación y la calma del equipo humano evita filtraciones internas dañinas.</p>
+                            <p>Una crisis pone a prueba la cultura, la comunicación interna y la percepción de los colaboradores. Mantener la alineación y la calma del equipo humano evita filtraciones internas dañinas.</p>
                         </div>
                     </div>
                     <div class="panel-arrow">

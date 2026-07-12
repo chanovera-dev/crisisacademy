@@ -50,7 +50,7 @@
             grid-template-rows: 1fr auto;
             align-items: start;
 
-            & .trouble-timeline {
+            & .timelines {
                 grid-row: span 2;
             }
 
@@ -93,128 +93,133 @@
             }
         }
 
-        & .trouble-timeline {
-            position: relative;
+        & .timelines {
             display: grid;
-            gap: 1rem;
-            width: 100%;
+            gap: 3rem;
 
-            & .timeline-line {
-                position: absolute;
-                left: 22px;
-                top: 0;
-                bottom: 0;
-                width: 2px;
-                background: linear-gradient(to bottom,
-                        transparent,
-                        color-mix(in srgb, var(--wp--preset--color--focus), transparent 50%) 10%,
-                        color-mix(in srgb, var(--wp--preset--color--focus), transparent 50%) 90%,
-                        transparent);
-
-                &::after {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: -1px;
-                    width: 4px;
-                    height: 40px;
-                    background: var(--wp--preset--color--focus);
-                    border-radius: 2px;
-                    filter: blur(1px);
-                    box-shadow: 0 0 12px var(--wp--preset--color--focus);
-                    animation: timelinePulse 3s ease-in-out infinite;
-                }
-            }
-
-            & .trouble-item {
+            & .trouble-timeline {
+                position: relative;
                 display: grid;
-                grid-template-columns: 46px 1fr;
                 gap: 1rem;
-                align-items: center;
-                opacity: 0;
-                transform: translateX(-20px);
-                animation: troubleSlideIn .6s ease-out forwards;
+                width: 100%;
 
-                &[data-trouble="1"] {
-                    animation-delay: .1s;
+                & .timeline-line {
+                    position: absolute;
+                    left: 22px;
+                    top: 1rem;
+                    bottom: 1rem;
+                    width: 2px;
+                    background: linear-gradient(to bottom,
+                            transparent,
+                            color-mix(in srgb, var(--wp--preset--color--focus), transparent 50%) 10%,
+                            color-mix(in srgb, var(--wp--preset--color--focus), transparent 50%) 90%,
+                            transparent);
+
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: -1px;
+                        width: 4px;
+                        height: 40px;
+                        background: var(--wp--preset--color--focus);
+                        border-radius: 2px;
+                        filter: blur(1px);
+                        box-shadow: 0 0 12px var(--wp--preset--color--focus);
+                        animation: timelinePulse 3s ease-in-out infinite;
+                    }
                 }
 
-                &[data-trouble="2"] {
-                    animation-delay: .25s;
-                }
-
-                &[data-trouble="3"] {
-                    animation-delay: .4s;
-                }
-
-                &[data-trouble="4"] {
-                    animation-delay: .55s;
-                }
-
-                &[data-trouble="5"] {
-                    animation-delay: .7s;
-                }
-
-                &[data-trouble="6"] {
-                    animation-delay: .85s;
-                }
-
-                & .item-marker {
-                    width: 46px;
-                    height: 46px;
+                & .trouble-item {
                     display: grid;
-                    place-items: center;
-                    border-radius: 50%;
-                    background: color-mix(in srgb, var(--wp--preset--color--focus), transparent 85%);
-                    border: 1px solid color-mix(in srgb, var(--wp--preset--color--focus), transparent 60%);
-                    color: var(--wp--preset--color--focus);
-                    flex-shrink: 0;
-                    position: relative;
-                    z-index: 1;
-                    transition: all .35s cubic-bezier(.2, .8, .2, 1);
+                    grid-template-columns: 46px 1fr;
+                    gap: 1rem;
+                    align-items: center;
+                    opacity: 0;
+                    transform: translateX(-20px);
+                    animation: troubleSlideIn .6s ease-out forwards;
 
-                    & svg {
-                        width: 20px;
-                        height: 20px;
-                    }
-                }
-
-                & .item-content {
-                    background: color-mix(in srgb, var(--wp--preset--color--base), transparent 95%);
-                    border: 1px solid color-mix(in srgb, var(--wp--preset--color--base), transparent 88%);
-                    border-radius: .75rem;
-                    padding: 1rem 1.25rem;
-                    transition: all .35s cubic-bezier(.2, .8, .2, 1);
-
-                    & .item-dept {
-                        display: block;
-                        font-size: .75rem;
-                        font-weight: 700;
-                        letter-spacing: .08em;
-                        text-transform: uppercase;
-                        color: color-mix(in srgb, var(--wp--preset--color--focus), var(--wp--preset--color--base) 30%);
-                        margin-bottom: .25rem;
+                    &[data-trouble="1"] {
+                        animation-delay: .1s;
                     }
 
-                    & p {
-                        font-size: clamp(.95rem, 1.2vw, 1.1rem);
-                        line-height: 1.5;
-                        color: color-mix(in srgb, var(--wp--preset--color--base), transparent 20%);
-                        margin: 0;
+                    &[data-trouble="2"] {
+                        animation-delay: .25s;
                     }
-                }
 
-                /* ── Hover state ── */
-                &:hover {
+                    &[data-trouble="3"] {
+                        animation-delay: .4s;
+                    }
+
+                    &[data-trouble="4"] {
+                        animation-delay: .55s;
+                    }
+
+                    &[data-trouble="5"] {
+                        animation-delay: .7s;
+                    }
+
+                    &[data-trouble="6"] {
+                        animation-delay: .85s;
+                    }
+
                     & .item-marker {
-                        background: color-mix(in srgb, var(--wp--preset--color--focus), transparent 70%);
-                        box-shadow: 0 0 20px color-mix(in srgb, var(--wp--preset--color--focus), transparent 60%);
-                        transform: scale(1.1);
+                        width: 46px;
+                        height: 46px;
+                        display: grid;
+                        place-items: center;
+                        border-radius: 50%;
+                        background: color-mix(in srgb, var(--wp--preset--color--focus), transparent 85%);
+                        border: 1px solid color-mix(in srgb, var(--wp--preset--color--focus), transparent 60%);
+                        color: var(--wp--preset--color--focus);
+                        flex-shrink: 0;
+                        position: relative;
+                        z-index: 1;
+                        transition: all .35s cubic-bezier(.2, .8, .2, 1);
+
+                        & svg {
+                            width: 20px;
+                            height: 20px;
+                        }
                     }
 
                     & .item-content {
-                        background: color-mix(in srgb, var(--wp--preset--color--base), transparent 90%);
-                        border-color: color-mix(in srgb, var(--wp--preset--color--focus), transparent 60%);
+                        background: color-mix(in srgb, var(--wp--preset--color--base), transparent 95%);
+                        border: 1px solid color-mix(in srgb, var(--wp--preset--color--base), transparent 88%);
+                        border-radius: .75rem;
+                        padding: 1rem 1.25rem;
+                        transition: all .35s cubic-bezier(.2, .8, .2, 1);
+
+                        & .item-dept {
+                            display: block;
+                            font-size: .75rem;
+                            font-weight: 700;
+                            letter-spacing: .08em;
+                            text-transform: uppercase;
+                            color: color-mix(in srgb, var(--wp--preset--color--focus), var(--wp--preset--color--base) 30%);
+                            margin-bottom: .25rem;
+                        }
+
+                        & p {
+                            font-size: clamp(.95rem, 1.2vw, 1.1rem);
+                            line-height: 1.5;
+                            color: color-mix(in srgb, var(--wp--preset--color--base), transparent 20%);
+                            margin: 0;
+                        }
+                    }
+
+                    /* ── Hover state ── */
+                    &:hover {
+                        & .item-marker {
+                            background: color-mix(in srgb, var(--wp--preset--color--focus), transparent 70%);
+                            box-shadow: 0 0 20px color-mix(in srgb, var(--wp--preset--color--focus), transparent 60%);
+                            transform: scale(1.1);
+                        }
+
+                        & .item-content {
+                            background: color-mix(in srgb, var(--wp--preset--color--base), transparent 90%);
+                            border-color: color-mix(in srgb, var(--wp--preset--color--focus), transparent 60%);
+                        }
                     }
                 }
             }
