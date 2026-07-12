@@ -132,7 +132,15 @@ function crisisacademy_homepage_templates() {
                 'counter',
                 'crisisacademy-how-works-script',
                 'posts-scripts',
-                'ws-script'
+                'ws-script',
+                'sticky-overlap-efect-script',
+                'card-glow-efect-script',
+                'faq-accordion-toggle-script',
+                'crisisacademy-homepage-script',
+                'crisisacademy-hero-script',
+                'animate-in',
+                'global-script',
+                'likes-script'
             ];
             if (in_array($handle, $defer_scripts)) {
                 if (false === strpos($tag, 'defer')) {
@@ -141,6 +149,31 @@ function crisisacademy_homepage_templates() {
             }
             return $tag;
         }, 10, 3);
+
+        // Cargar hojas de estilo no críticas de forma asíncrona para evitar bloqueo de renderizado
+        add_filter('style_loader_tag', function($html, $handle, $href, $media) {
+            $non_critical_styles = [
+                'crisisacademy-trust-bar',
+                'crisisacademy-about',
+                'crisisacademy-signals',
+                'crisisacademy-how-works',
+                'crisisacademy-certification',
+                'crisisacademy-crisis-simulator',
+                'crisisacademy-cta',
+                'crisisacademy-upcoming-events',
+                'crisisacademy-news',
+                'posts-styles',
+                'archive-design',
+                'crisisacademy-faq',
+                'shapes',
+                'rounded-shapes',
+                'breadcrumbs'
+            ];
+            if (in_array($handle, $non_critical_styles)) {
+                return "<link rel='stylesheet' id='" . esc_attr($handle) . "-css' href='" . esc_url($href) . "' media='print' onload=\"this.media='all'\" />\n";
+            }
+            return $html;
+        }, 10, 4);
     }
 }
 add_action( 'wp_enqueue_scripts', 'crisisacademy_homepage_templates' );
@@ -197,11 +230,19 @@ function homepage_templates() {
         add_filter('script_loader_tag', function($tag, $handle, $src) {
             $defer_scripts = [
                 'quotes-slideshow-script',
+                'quotes-slideshow-scripts',
                 'cert-slideshow-script',
                 'posts-scripts',
                 'ws-script',
                 'faq-accordion-toggle-script',
                 'sticky-overlap-efect-script',
+                'homepage-scripts',
+                'hero-scripts',
+                'down-chart-scripts',
+                'testimonies-scripts',
+                'animate-in',
+                'global-script',
+                'likes-script'
             ];
             if (in_array($handle, $defer_scripts)) {
                 if (false === strpos($tag, 'defer')) {
@@ -210,6 +251,34 @@ function homepage_templates() {
             }
             return $tag;
         }, 10, 3);
+
+        // Cargar hojas de estilo no críticas de forma asíncrona para evitar bloqueo de renderizado
+        add_filter('style_loader_tag', function($html, $handle, $href, $media) {
+            $non_critical_styles = [
+                'hearings-styles',
+                'wcu-styles',
+                'founder-styles',
+                'program-styles',
+                'quotes-slideshow-styles',
+                'simulation-styles',
+                'diff-styles',
+                'testimonies-styles',
+                'thought-styles',
+                'cta-styles',
+                'upcoming-events-styles',
+                'news-styles',
+                'posts-styles',
+                'archive-design',
+                'faq-styles',
+                'shapes',
+                'rounded-shapes',
+                'breadcrumbs'
+            ];
+            if (in_array($handle, $non_critical_styles)) {
+                return "<link rel='stylesheet' id='" . esc_attr($handle) . "-css' href='" . esc_url($href) . "' media='print' onload=\"this.media='all'\" />\n";
+            }
+            return $html;
+        }, 10, 4);
     }
 }
 add_action( 'wp_enqueue_scripts', 'homepage_templates' );
