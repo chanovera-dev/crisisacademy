@@ -38,7 +38,7 @@
                                 </svg>
                             </div>
                             <div class="item-text">
-                                <strong>Ian Mitroff & William Benoit</strong>
+                                <strong>Ian Mitroff, Timothy Coombs & William Benoit</strong>
                                 <span>Modelos teóricos consolidados de contención de crisis y estrategias de restauración de imagen corporativa.</span>
                             </div>
                         </div>

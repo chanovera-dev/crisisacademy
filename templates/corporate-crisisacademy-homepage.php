@@ -12,7 +12,7 @@ get_header(); ?>
         'hero',
         'trouble',
         'hearings',
-        'wcu',
+        // 'wcu',
         'founder',
         'program',
         'simulation',
