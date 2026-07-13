@@ -11,7 +11,7 @@ get_header(); ?>
     $sections = [
         'hero',
         'trouble',
-        // 'hearings',
+        'hearings',
         // 'wcu',
         // 'founder',
         // 'program',
