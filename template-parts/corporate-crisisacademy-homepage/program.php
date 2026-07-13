@@ -6,10 +6,10 @@
     <div class="content">
         <div class="program-header">
             <span class="pretext pretext-reveal">Crisis Readiness Program™</span>
-            <h2 class="title-reveal">No desarrollamos conocimientos.<br><span>Desarrollamos capacidad institucional.</span></h2>
+            <h2 class="object-reveal">No desarrollamos conocimientos.<br><span>Desarrollamos capacidad institucional.</span></h2>
         </div>
 
-        <div class="state-program tabs card-reveal">
+        <div class="state-program tabs object-reveal">
             <input type="radio" id="btn1" name="tab-control" checked>
             <input type="radio" id="btn2" name="tab-control">
 

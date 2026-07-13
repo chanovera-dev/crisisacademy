@@ -68,6 +68,21 @@
                 }
             }
 
+            @media (width <=600px) {
+                & .state-buttons {
+                    & label {
+                        display: grid;
+
+                        & .pretext {
+                            display: flex;
+                            justify-content: center;
+                            font-size: 1rem;
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+
             & .state-program--container {
                 position: relative;
                 width: 100%;
@@ -94,7 +109,7 @@
                     }
 
                     & p {
-                        font-size: 0.95rem;
+                        font-size: 1rem;
                         line-height: 1.6;
                         color: color-mix(in srgb, var(--wp--preset--color--contrast), transparent 30%);
                         margin: 0;
@@ -226,7 +241,7 @@
         }
 
         & p {
-            font-size: 0.9rem;
+            font-size: 1rem;
             line-height: 1.55;
             color: color-mix(in srgb, var(--wp--preset--color--contrast), transparent 30%);
             margin: 0;
@@ -243,7 +258,7 @@
 /* Steps Slideshow Elements */
 .step-num-badge {
     color: var(--wp--preset--color--focus);
-    font-size: 0.7rem;
+    font-size: 1rem;
     font-weight: 800;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -267,60 +282,6 @@
         & svg {
             width: 15px;
             height: 15px;
-        }
-    }
-}
-
-/* Custom Pagination Layout */
-#program .slideshow-bullets-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    & .btn-pagination {
-        background-color: transparent;
-        border: none;
-        color: var(--wp--preset--color--contrast);
-        opacity: 0.4;
-        width: 37px;
-        height: 37px;
-        display: grid;
-        place-items: center;
-        cursor: pointer;
-        padding: 0;
-        border-radius: .3rem;
-        transition: all 0.3s ease;
-
-        & svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        &:hover {
-            opacity: 1;
-            background-color: color-mix(in srgb, var(--wp--preset--color--contrast) 4%, transparent);
-            color: var(--wp--preset--color--focus);
-        }
-    }
-
-    & .slideshow-bullets {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1rem;
-
-        & .bullet {
-            width: .6rem;
-            height: .6rem;
-            border-radius: 50%;
-            background-color: color-mix(in srgb, var(--wp--preset--color--contrast), transparent 90%);
-            cursor: pointer;
-            padding: 0;
-            transition: all 0.3s ease;
-
-            &.active {
-                background-color: var(--wp--preset--color--focus);
-            }
         }
     }
 }

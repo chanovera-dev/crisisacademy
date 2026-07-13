@@ -254,6 +254,60 @@ body {
             transform: translateY(0);
         }
     }
+
+    /* Custom Pagination Layout */
+    & .slideshow-bullets-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        & .btn-pagination {
+            background-color: transparent;
+            border: none;
+            color: var(--wp--preset--color--contrast);
+            opacity: 0.4;
+            width: 37px;
+            height: 37px;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            padding: 0;
+            border-radius: .3rem;
+            transition: all 0.3s ease;
+
+            & svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            &:hover {
+                opacity: 1;
+                background-color: color-mix(in srgb, var(--wp--preset--color--contrast) 4%, transparent);
+                color: var(--wp--preset--color--focus);
+            }
+        }
+
+        & .slideshow-bullets {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+
+            & .bullet {
+                width: .6rem;
+                height: .6rem;
+                border-radius: 50%;
+                background-color: color-mix(in srgb, var(--wp--preset--color--contrast), transparent 90%);
+                cursor: pointer;
+                padding: 0;
+                transition: all 0.3s ease;
+
+                &.active {
+                    background-color: var(--wp--preset--color--focus);
+                }
+            }
+        }
+    }
 }
 
 .is-chromium {

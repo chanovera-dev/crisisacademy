@@ -14,7 +14,7 @@ get_header(); ?>
         'hearings',
         // 'wcu',
         'founder',
-        // 'program',
+        'program',
         // 'simulation',
         // 'diff',
         // 'testimonies',
