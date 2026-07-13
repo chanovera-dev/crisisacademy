@@ -110,7 +110,7 @@ function crisisacademy_homepage_templates() {
         avante_enqueue_script('sticky-overlap-efect-script', $a['js']['sticky-overlap-efect-script']);
         avante_enqueue_script('card-glow-efect-script', $a['js']['card-glow-efect-script']);
         avante_enqueue_script('faq-accordion-toggle-script', $a['js']['faq-accordion-toggle-script']);
-        avante_enqueue_script('crisisacademy-homepage-script', $a['js']['crisisacademy-homepage-script'], ['card-glow-efect-script']);
+        avante_enqueue_script('crisisacademy-homepage-script', $a['js']['crisisacademy-homepage-script']);
         avante_enqueue_script('crisisacademy-hero-script', $a['js']['crisisacademy-hero-script']);
         avante_enqueue_script('three', $a['js']['three']);
         avante_enqueue_script('webgl-slideshow-script', $a['js']['webgl-slideshow-script']);
@@ -214,7 +214,7 @@ function homepage_templates() {
         avante_enqueue_style('archive-design', $b['css']['archive-design']);
         crisisacademy_enqueue_style('faq-styles', $a['css']['faq-styles']);
 
-        crisisacademy_enqueue_script('homepage-scripts', $a['js']['homepage-scripts'], ['card-glow-efect-script']);
+        crisisacademy_enqueue_script('homepage-scripts', $a['js']['homepage-scripts']);
         crisisacademy_enqueue_script('hero-scripts', $a['js']['hero-scripts']);
         crisisacademy_enqueue_script('down-chart-scripts', $a['js']['down-chart-scripts']);
         avante_enqueue_script('quotes-slideshow-scripts', $b['js']['quotes-slideshow-script']);
@@ -274,7 +274,8 @@ function homepage_templates() {
                 'faq-styles',
                 'shapes',
                 'rounded-shapes',
-                'breadcrumbs'
+                'breadcrumbs',
+                'trouble-styles'
             ];
             if (in_array($handle, $non_critical_styles)) {
                 return "<link rel='stylesheet' id='" . esc_attr($handle) . "-css' href='" . esc_url($href) . "' media='print' onload=\"this.media='all'\" />\n";

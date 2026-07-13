@@ -256,6 +256,10 @@ document.addEventListener('DOMContentLoaded', () => {
         initStickyAnchorLinks();
     }
 
+    if (typeof initFaqAccordion === 'function') {
+        initFaqAccordion();
+    }
+
     // Interactive hearings radar and panels
     const panels = document.querySelectorAll('#hearings .hearing-panel');
     const quadrants = document.querySelectorAll('#hearings .radar-quadrant');
