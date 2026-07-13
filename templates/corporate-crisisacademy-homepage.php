@@ -19,7 +19,7 @@ get_header(); ?>
         'diff', 
         'testimonies',
         'thought',
-        // 'cta',
+        'cta',
         // 'upcoming-events',
         // 'news',
         // 'faq'

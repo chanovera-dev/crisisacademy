@@ -29,7 +29,7 @@ $whatsapp_number = '525543910088';
         <div class="circle circle-3"></div>
         <div class="circle circle-4"></div>
     </div>
-    <div class="content card-reveal">
+    <div class="content object-reveal">
         <div class="content-backdrop-glow">
             <div class="circle circle-1"></div>
             <div class="circle circle-2"></div>
@@ -72,7 +72,7 @@ $whatsapp_number = '525543910088';
                 </div>
             </div>
             <!-- <span class="span-pretext pretext-reveal"><?= esc_html($cta_pretext); ?></span> -->
-            <h2 class="title-section title-reveal"><?= esc_html($cta_title); ?></h2>
+            <h2 class="title-section object-reveal"><?= esc_html($cta_title); ?></h2>
             <p class="cta-description object-reveal"><?= esc_html($cta_desc); ?></p>
         </div>
         <div class="separator"></div>
