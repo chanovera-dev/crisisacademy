@@ -16,7 +16,7 @@ get_header(); ?>
         'founder',
         'program',
         'simulation',
-        // 'diff',
+        'diff', 
         // 'testimonies',
         // 'thought',
         // 'cta',

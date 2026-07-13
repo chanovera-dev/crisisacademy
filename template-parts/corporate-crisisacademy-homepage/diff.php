@@ -2,11 +2,11 @@
     <div class="content">
         <div class="diff-header">
             <span class="pretext pretext-reveal">Por qué nosotros</span>
-            <h2 class="title-reveal">Por qué organizaciones líderes<br><span>trabajan con nosotros</span></h2>
+            <h2 class="object-reveal">Por qué organizaciones líderes<br><span>trabajan con nosotros</span></h2>
         </div>
 
         <!-- The 3D flip slideshow container -->
-        <div class="cert-container diff-slideshow-container card-reveal">
+        <div class="cert-container diff-slideshow-container object-reveal">
             <div class="slideshow--wrapper">
                 <div class="slideshow">
                     <!-- Slide 1 -->
