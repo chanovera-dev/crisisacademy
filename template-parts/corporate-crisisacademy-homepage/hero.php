@@ -12,6 +12,7 @@
         </div>
         <div class="data">
             <div class="data-block object-reveal">
+                <div class="block-glow" aria-hidden="true"></div>
                 <h3>Las cifras lo demuestran.</h3>
                 <p>Las empresas sin preparación pierden más del <strong>11% de su valor de mercado</strong> en los primeros días de una crisis.</p>
                 <p>Y las organizaciones que responden durante la primera hora reducen significativamente el daño reputacional frente a quienes reaccionan tarde.</p>
