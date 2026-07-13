@@ -94,7 +94,7 @@
             line-height: 1.15;
             font-weight: 600;
             color: #ffffff;
-            margin: 0;
+            margin: 1rem 0;
 
             & span {
                 color: color-mix(in srgb, #ffffff, transparent 20%);
@@ -122,12 +122,11 @@
     /* Right Side — Interactive Dashboard Panel */
     & .simulation-right {
         & .vulnerabilities-panel {
-            background: rgba(255, 255, 255, 0.02);
+            background-color: var(--wp--preset--color--footer-background);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 1.25rem;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
             overflow: hidden;
-            backdrop-filter: blur(10px);
 
             & .panel-header {
                 display: flex;
@@ -177,10 +176,11 @@
                 gap: 1.25rem;
                 padding: 1.25rem;
                 border-radius: 0.75rem;
-                background: rgba(255, 255, 255, 0.01);
-                border: 1px solid rgba(255, 255, 255, 0.02);
+                background: transparent;
+                border: 1px solid transparent;
                 transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
                 cursor: default;
+                position: relative;
 
                 & .vuln-status {
                     flex-shrink: 0;
@@ -230,10 +230,45 @@
                     }
                 }
 
-                &:hover {
-                    background: rgba(255, 255, 255, 0.035);
-                    border-color: rgba(242, 106, 35, 0.2);
+                /* Resplandor interno dinámico */
+                &::before {
+                    content: "";
+                    position: absolute;
+                    inset: 0;
+                    background: radial-gradient(600px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(0, 162, 255, 0.12), transparent 50%);
+                    opacity: 0;
+                    transition: opacity 0.4s ease;
+                    pointer-events: none;
+                    z-index: -1;
+                    border-radius: inherit;
+                    corner-shape: inherit;
+                }
 
+                /* Borde dinámico que sigue al ratón */
+                &::after {
+                    content: "";
+                    position: absolute;
+                    inset: -1px;
+                    background: radial-gradient(350px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(0, 162, 255, 0.8), transparent 50%);
+                    opacity: 0;
+                    transition: opacity 0.4s ease;
+                    pointer-events: none;
+                    z-index: 1;
+                    border-radius: inherit;
+                    corner-shape: inherit;
+                    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+                    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+                    -webkit-mask-composite: xor;
+                    mask-composite: exclude;
+                    padding: 1px;
+                }
+
+                &:hover::before,
+                &:hover::after {
+                    opacity: 1;
+                }
+
+                &:hover {
                     & .vuln-box {
                         border-color: var(--wp--preset--color--focus);
                         background: rgba(242, 106, 35, 0.12);

@@ -7,7 +7,7 @@
     <div class="content">
         <div class="simulation-left">
             <span class="pretext pretext-reveal">Entrenamiento Inmersivo</span>
-            <h2 class="title-reveal">Antes de comenzar,<br><span>casi siempre encontramos los mismos problemas.</span></h2>
+            <h2 class="object-reveal">Antes de comenzar,<br><span>casi siempre encontramos los mismos problemas.</span></h2>
             <p class="simulation-intro-desc object-reveal">
                 Las organizaciones suelen creer que están preparadas hasta que se enfrentan a un incidente real. Nuestro simulador interactivo recrea la presión de una crisis digital y mediática para evaluar y fortalecer su protocolo de respuesta en minutos.
             </p>
@@ -29,7 +29,7 @@
         </div>
         
         <div class="simulation-right">
-            <div class="vulnerabilities-panel card-reveal">
+            <div class="vulnerabilities-panel object-reveal">
                 <div class="panel-header">
                     <div class="panel-dot dot-red"></div>
                     <div class="panel-dot dot-yellow"></div>

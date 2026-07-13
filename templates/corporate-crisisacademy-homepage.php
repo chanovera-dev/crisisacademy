@@ -15,7 +15,7 @@ get_header(); ?>
         // 'wcu',
         'founder',
         'program',
-        // 'simulation',
+        'simulation',
         // 'diff',
         // 'testimonies',
         // 'thought',
