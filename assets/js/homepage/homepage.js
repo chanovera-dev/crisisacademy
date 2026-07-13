@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (typeof initCardGlowEffect === 'function') {
-        initCardGlowEffect('#hero, .data-block, .hearing-panel');
+        initCardGlowEffect('#hero, .data-block, .hearing-panel, .founder-counter');
     }
 
     if (typeof initBlockViewportObserver === 'function') {

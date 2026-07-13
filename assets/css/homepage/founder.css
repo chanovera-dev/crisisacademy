@@ -159,7 +159,7 @@
         font-size: clamp(2.4rem, 5vw, 3.4rem);
         font-weight: 800;
         color: #ffffff;
-        margin: 0;
+        margin-bottom: 1rem;
         letter-spacing: -0.02em;
     }
 
@@ -269,9 +269,48 @@
     background: linear-gradient(135deg, color-mix(in srgb, #ffffff 4%, transparent), color-mix(in srgb, #ffffff 1%, transparent));
     border: 1px solid color-mix(in srgb, #ffffff 6%, transparent);
     padding: 1.5rem 2rem;
-    border-radius: 1.25rem;
+    border-radius: 1rem;
     width: 100%;
     margin-top: 0.5rem;
+    position: relative;
+
+    /* Resplandor interno dinámico */
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(600px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(0, 162, 255, 0.12), transparent 50%);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+        z-index: -1;
+        border-radius: inherit;
+        corner-shape: inherit;
+    }
+
+    /* Borde dinámico que sigue al ratón */
+    &::after {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        background: radial-gradient(350px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(0, 162, 255, 0.8), transparent 50%);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+        z-index: 1;
+        border-radius: inherit;
+        corner-shape: inherit;
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        padding: 1px;
+    }
+
+    &:hover::before,
+    &:hover::after {
+        opacity: 1;
+    }
 
     @media (width>=768px) {
         flex-direction: row;
@@ -293,10 +332,6 @@
         line-height: 1.4;
         color: color-mix(in srgb, #ffffff, transparent 30%);
         max-width: 250px;
-    }
-
-    &:hover .counter-number {
-        transform: scale(1.05);
     }
 }
 

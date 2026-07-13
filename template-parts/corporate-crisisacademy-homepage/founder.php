@@ -4,7 +4,7 @@
         <div class="founder-grid">
             
             <!-- Left Side: Elegant Portrait Photo -->
-            <div class="founder-visual card-reveal">
+            <div class="founder-visual object-reveal">
                 <div class="visual-frame">
                     <div class="corner-reticle top-left"></div>
                     <div class="corner-reticle top-right"></div>
@@ -17,7 +17,7 @@
             <!-- Right Side: Content Bio & Methodology -->
             <div class="founder-info">
                 <span class="pretext pretext-reveal">Liderazgo Académico</span>
-                <h2 class="founder-name title-reveal">Carolina Eslava</h2>
+                <h2 class="founder-name object-reveal">Carolina Eslava</h2>
                 <div class="founder-role object-reveal">Fundadora & Directora de The Crisis Academy</div>
 
                 <div class="founder-quote object-reveal">
