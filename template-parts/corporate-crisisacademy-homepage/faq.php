@@ -39,9 +39,9 @@ $cta_avatar = get_field('homepage_faq_cta_avatar')['url'] ?? 'https://i.pravatar
                 <span class="pretext faq-pretext pretext-reveal">
                     <?= esc_html($faq_subtitle); ?>
                 </span>
-                <h2 class="title-section faq-main-title title-reveal"><?= wp_kses_post($faq_title); ?></h2>
+                <h2 class="title-section faq-main-title object-reveal"><?= wp_kses_post($faq_title); ?></h2>
 
-                <div class="faq-cta-card card-reveal">
+                <div class="faq-cta-card object-reveal">
                     <div class="faq-cta-avatar-wrapper">
                         <img src="<?= esc_url($cta_avatar); ?>" alt="Avatar" class="faq-cta-avatar">
                     </div>
@@ -55,7 +55,7 @@ $cta_avatar = get_field('homepage_faq_cta_avatar')['url'] ?? 'https://i.pravatar
             </div>
 
             <!-- Right Column (Accordion) -->
-            <div class="faq-column-accordion card-reveal">
+            <div class="faq-column-accordion object-reveal">
                 <div class="accordion-container">
                     <?php if (have_rows('homepage_faqs')) : ?>
                         <?php while (have_rows('homepage_faqs')) : the_row();

@@ -21,8 +21,8 @@ get_header(); ?>
         'thought',
         'cta',
         'upcoming-events',
-        // 'news',
-        // 'faq'
+        'news',
+        'faq'
     ];
 
     foreach ($sections as $section => $condition) {

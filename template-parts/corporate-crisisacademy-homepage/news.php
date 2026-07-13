@@ -23,7 +23,7 @@ $wp_query = new WP_Query($args);
         
         <header class="section-header">
             <span class="pretext pretext-reveal">Centro de Inteligencia</span>
-            <h2 class="title-section title-reveal">Actualidad Global y Análisis</h2>
+            <h2 class="title-section object-reveal">Actualidad Global y Análisis</h2>
             <p class="description-section object-reveal">Mantente informado de los últimos eventos, análisis e impacto de crisis y escándalos.</p>
         </header>
 
