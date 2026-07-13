@@ -6,10 +6,10 @@
             <div class="hearings-visual">
                 <div class="visual-header">
                     <span class="pretext pretext-reveal">Impacto 360°</span>
-                    <h2 class="title-reveal">Una crisis de reputación no es solo un asunto de comunicación.</h2>
+                    <h2 class="object-reveal">Una crisis de reputación no es solo un asunto de comunicación.</h2>
                 </div>
                 
-                <div class="radar-container card-reveal">
+                <div class="radar-container object-reveal">
                     <div class="radar-circle circle-1"></div>
                     <div class="radar-circle circle-2"></div>
                     <div class="radar-circle circle-3"></div>
@@ -36,7 +36,7 @@
 
             <!-- Right Side: Interactive Stacked Panels -->
             <div class="hearings-interactive-list card-reveal">
-                <div class="hearing-panel" data-department="comms">
+                <div class="hearing-panel object-reveal" data-department="comms">
                     <div class="panel-number">01</div>
                     <div class="panel-main">
                         <h3>COMMS / PR <span class="badge">Primera Línea</span></h3>
@@ -49,7 +49,7 @@
                     </div>
                 </div>
 
-                <div class="hearing-panel" data-department="hr">
+                <div class="hearing-panel object-reveal" data-department="hr">
                     <div class="panel-number">02</div>
                     <div class="panel-main">
                         <h3>RH / D.O. <span class="badge">Cultura</span></h3>
@@ -62,7 +62,7 @@
                     </div>
                 </div>
 
-                <div class="hearing-panel" data-department="csuite">
+                <div class="hearing-panel object-reveal" data-department="csuite">
                     <div class="panel-number">03</div>
                     <div class="panel-main">
                         <h3>C-SUITE / CEO / CFO <span class="badge">Estrategia</span></h3>
@@ -75,7 +75,7 @@
                     </div>
                 </div>
 
-                <div class="hearing-panel" data-department="ops">
+                <div class="hearing-panel object-reveal" data-department="ops">
                     <div class="panel-number">04</div>
                     <div class="panel-main">
                         <h3>OPERACIONES & SEGURIDAD <span class="badge">Continuidad</span></h3>

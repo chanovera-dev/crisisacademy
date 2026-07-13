@@ -240,6 +240,10 @@ document.addEventListener('DOMContentLoaded', () => {
         initStickyOverlapEffect();
     }
 
+    if (typeof initCardGlowEffect === 'function') {
+        initCardGlowEffect('#hero, .data-block, .hearing-panel');
+    }
+
     if (typeof initBlockViewportObserver === 'function') {
         initBlockViewportObserver();
     }

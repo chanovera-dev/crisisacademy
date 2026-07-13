@@ -59,37 +59,42 @@
             grid-template-columns: 1.1fr 0.9fr;
             gap: 5rem;
         }
-    }
 
-    /* ── Left Column: Visual & Header ────────────────── */
-    & .hearings-visual {
-        display: flex;
-        flex-direction: column;
-        gap: 2.5rem;
+        /* ── Left Column: Visual & Header ────────────────── */
+        & .hearings-visual {
+            display: grid;
+            gap: 2.5rem;
 
-        @media (width >=1024px) {
-            position: sticky;
-            top: 130px;
-        }
-
-        & .visual-header {
-            text-align: left;
-
-            & .pretext {
-                background: color-mix(in srgb, #cf2e2e 20%, transparent);
-                color: var(--wp--preset--color--base);
-                border-color: color-mix(in srgb, #cf2e2e 50%, transparent);
+            @media (width >=1024px) {
+                position: sticky;
+                top: 130px;
             }
 
-            & h2 {
-                font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-                line-height: 1.25;
-                font-weight: 600;
-                color: #ffffff;
-                margin-top: 1rem;
+            & .visual-header {
+                text-align: center;
+
+                @media (width >=1024px) {
+                    text-align: left;
+                }
+
+                & .pretext {
+                    background: color-mix(in srgb, #cf2e2e 20%, transparent);
+                    color: var(--wp--preset--color--base);
+                    border-color: color-mix(in srgb, #cf2e2e 50%, transparent);
+                }
+
+                & h2 {
+                    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+                    line-height: 1.25;
+                    font-weight: 600;
+                    color: var(--wp--preset--color--base);
+                    margin-top: 1rem;
+                }
             }
         }
     }
+
+
 
     /* ── Radar Visualizer ────────────────────────────── */
     & .radar-container {
@@ -171,10 +176,10 @@
         border: 1px solid transparent;
 
         & .quadrant-label {
-            font-size: 0.75rem;
+            font-size: clamp(1rem, 1.1vw, 1.3rem);
             font-weight: 800;
             letter-spacing: 0.08em;
-            color: color-mix(in srgb, #ffffff, transparent 60%);
+            color: var(--wp--preset--color--base);
             transition: all 0.4s ease;
         }
 
@@ -226,6 +231,7 @@
     }
 
     & .hearing-panel {
+        position: relative;
         background: color-mix(in srgb, var(--wp--preset--color--footer-background), transparent 40%);
         border: 1px solid color-mix(in srgb, #ffffff, transparent 92%);
         border-radius: 1rem;
@@ -257,13 +263,19 @@
                 font-weight: 700;
                 margin: 0;
                 display: flex;
+                flex-wrap: wrap;
                 align-items: center;
+                justify-content: center;
                 gap: 0.75rem;
                 color: #ffffff;
                 transition: color 0.3s ease;
 
+                @media (width >=1024px) {
+                    justify-content: flex-start;
+                }
+
                 & .badge {
-                    font-size: 0.65rem;
+                    font-size: 0.8rem;
                     font-weight: 700;
                     letter-spacing: 0.04em;
                     text-transform: uppercase;
@@ -283,12 +295,16 @@
                 overflow: hidden;
 
                 & p {
-                    font-size: 0.95rem;
+                    font-size: 1rem;
                     line-height: 1.6;
                     color: color-mix(in srgb, #ffffff, transparent 35%);
                     margin: 0;
                     min-height: 0;
                     transition: color 0.3s ease;
+
+                    @media (width >=1024px) {
+                        text-align: left;
+                    }
                 }
             }
         }
@@ -321,11 +337,49 @@
         }
 
         &.active {
-            border-color: color-mix(in srgb, var(--wp--preset--color--focus) 60%, transparent);
-            background: var(--wp--preset--color--contrast);
+            border-color: rgba(255, 255, 255, 0.06);
+            background: color-mix(in srgb, var(--wp--preset--color--contrast) 50%, transparent);
             box-shadow:
                 0 15px 30px -10px rgba(0, 0, 0, 0.4),
                 inset 0 0 20px color-mix(in srgb, var(--wp--preset--color--focus) 5%, transparent);
+
+            /* Resplandor interno dinámico */
+            &::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: radial-gradient(600px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(0, 162, 255, 0.12), transparent 50%);
+                opacity: 0;
+                transition: opacity 0.4s ease;
+                pointer-events: none;
+                z-index: -1;
+                border-radius: inherit;
+                corner-shape: inherit;
+            }
+
+            /* Borde dinámico que sigue al ratón */
+            &::after {
+                content: "";
+                position: absolute;
+                inset: -1px;
+                background: radial-gradient(350px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(0, 162, 255, 0.8), transparent 50%);
+                opacity: 0;
+                transition: opacity 0.4s ease;
+                pointer-events: none;
+                z-index: 1;
+                border-radius: inherit;
+                corner-shape: inherit;
+                -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+                mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+                -webkit-mask-composite: xor;
+                mask-composite: exclude;
+                padding: 1px;
+            }
+
+            &:hover::before,
+            &:hover::after {
+                opacity: 1;
+            }
 
             & .panel-number {
                 color: var(--wp--preset--color--focus);
@@ -351,7 +405,7 @@
             }
 
             & .panel-arrow {
-                color: var(--wp--preset--color--focus);
+                color: var(--wp--preset--color--base);
                 transform: rotate(90deg);
             }
         }
@@ -372,7 +426,7 @@
 /* ── Squircle Support ── */
 .is-chromium {
     & #hearings .hearing-panel {
-        border-radius: 1.25rem !important;
+        border-radius: 2rem !important;
         corner-shape: squircle;
     }
 }
