@@ -11,18 +11,18 @@ get_header(); ?>
     $sections = [
         'hero',
         'trouble',
-        'hearings',
+        // 'hearings',
         // 'wcu',
-        'founder',
-        'program',
-        'simulation',
-        'diff',
-        'testimonies',
-        'thought',
-        'cta',
-        'upcoming-events',
-        'news',
-        'faq'
+        // 'founder',
+        // 'program',
+        // 'simulation',
+        // 'diff',
+        // 'testimonies',
+        // 'thought',
+        // 'cta',
+        // 'upcoming-events',
+        // 'news',
+        // 'faq'
     ];
 
     foreach ($sections as $section => $condition) {

@@ -1,12 +1,12 @@
 <section id="trouble" class="block">
     <div class="content">
         <div class="trouble-header">
-            <span class="pretext">El problema</span>
-            <h2>Muchas empresas descubren que sus protocolos son del siglo pasado... <br><em>cuando ya es demasiado tarde.</em></h2>
+            <span class="pretext pretext-reveal">El problema</span>
+            <h2 class="object-reveal">Muchas empresas descubren que sus protocolos son del siglo pasado... <br><em>cuando ya es demasiado tarde.</em></h2>
         </div>
 
         <div class="timelines">
-            <div class="trouble-timeline">
+            <div class="trouble-timeline object-reveal">
                 <div class="timeline-line" aria-hidden="true"></div>
 
                 <div class="trouble-item" data-trouble="1">
@@ -50,9 +50,9 @@
                 </div>
             </div>
 
-            <div>Mientras tanto ...</div>
+            <div class="object-reveal">Mientras tanto ...</div>
 
-            <div class="trouble-timeline">
+            <div class="trouble-timeline object-reveal">
                 <div class="timeline-line" aria-hidden="true"></div>
 
                 <div class="trouble-item" data-trouble="5">
@@ -77,7 +77,7 @@
             </div>
         </div>
 
-        <div class="trouble-conclusion">
+        <div class="trouble-conclusion object-reveal">
             <div class="conclusion-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
             </div>
