@@ -20,7 +20,7 @@ get_header(); ?>
         'testimonies',
         'thought',
         'cta',
-        // 'upcoming-events',
+        'upcoming-events',
         // 'news',
         // 'faq'
     ];

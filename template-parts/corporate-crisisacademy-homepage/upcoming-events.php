@@ -20,7 +20,7 @@ $title = get_field('upcoming_events_title');
 ?>
 
 <section id="upcoming-events" class="block">
-    <div class="content card-reveal">
+    <div class="content object-reveal">
         <div class="events-container">
             <header class="events-header">
                 <?php if ($pretext) : ?>
