@@ -18,7 +18,7 @@ get_header(); ?>
         'simulation',
         'diff', 
         'testimonies',
-        // 'thought',
+        'thought',
         // 'cta',
         // 'upcoming-events',
         // 'news',
