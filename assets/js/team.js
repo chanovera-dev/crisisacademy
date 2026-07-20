@@ -25,8 +25,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 spotTabPanels.forEach(p => {
                     if (p.id === targetTabId) {
                         p.classList.add('active');
+                        p.classList.remove('is-animating');
+                        requestAnimationFrame(() => {
+                            requestAnimationFrame(() => {
+                                p.classList.add('is-animating');
+                            });
+                        });
                     } else {
-                        p.classList.remove('active');
+                        p.classList.remove('active', 'is-animating');
                     }
                 });
             });
@@ -196,4 +202,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     initCardGlowEffect();
+
+    // ── 8. Sticky Overlap Effect ─────────────────────────────
+    if (typeof initStickyOverlapEffect === 'function') {
+        initStickyOverlapEffect();
+    }
 });

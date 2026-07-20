@@ -112,7 +112,7 @@ $theme_uri = get_stylesheet_directory_uri();
 
                     <!-- Panel 3: Impact -->
                     <div class="spot-tab-panel" id="tab-impact">
-                        <div class="founder-counter object-reveal">
+                        <div class="founder-counter">
                             <div class="counter-number">+2,000</div>
                             <div class="counter-label">Ejecutivos entrenados bajo simulación de crisis activa en toda la región.</div>
                         </div>
