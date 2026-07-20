@@ -38,14 +38,16 @@ function crisisacademy_get_assets()
             'cta-styles' => $assets_path . '/css/homepage/cta.css',
             'upcoming-events-styles' => $assets_path . '/css/homepage/upcoming-events.css',
             'news-styles' => $assets_path . '/css/homepage/news.css',
-            'faq-styles' => $assets_path . '/css/homepage/faq.css'
+            'faq-styles' => $assets_path . '/css/homepage/faq.css',
+            'team-styles' => $assets_path . '/css/team.css'
         ],
         'js' => [
             'homepage-scripts' => $assets_path . '/js/homepage/homepage.js',
             'hero-scripts' => $assets_path . '/js/homepage/hero.js',
             'testimonies-scripts' => $assets_path . '/js/homepage/testimonies.js',
             'upcoming-events-scripts' => $assets_path . '/js/homepage/upcoming-events.js',
-            'down-chart-scripts' => $assets_path . '/js/homepage/down-chart.js'
+            'down-chart-scripts' => $assets_path . '/js/homepage/down-chart.js',
+            'team-scripts' => $assets_path . '/js/team.js'
         ]
     ];
 }
@@ -285,6 +287,49 @@ function homepage_templates() {
     }
 }
 add_action( 'wp_enqueue_scripts', 'homepage_templates' );
+
+/**
+ * Team Page Template
+ */
+function team_templates() {
+    if (is_page_template('templates/team.php')) {
+        $a = crisisacademy_get_assets();
+        $b = avante_get_assets();
+
+        function unload_parts_header_team() {
+            wp_dequeue_style( 'page' );
+        }
+        add_action( 'wp_enqueue_scripts', 'unload_parts_header_team', 100 );
+
+        crisisacademy_enqueue_style('homepage', $a['css']['homepage']);
+        crisisacademy_enqueue_style('team-styles', $a['css']['team-styles']);
+        crisisacademy_enqueue_script('team-scripts', $a['js']['team-scripts']);
+
+        // Shared homepage scripts for consistent interactions
+        avante_enqueue_script('sticky-overlap-efect-script', $b['js']['sticky-overlap-efect-script']);
+        avante_enqueue_script('card-glow-efect-script', $b['js']['card-glow-efect-script']);
+        avante_enqueue_script('animate-in', $b['js']['animate-in']);
+
+        // Defer non-critical scripts
+        add_filter('script_loader_tag', function($tag, $handle, $src) {
+            $defer_scripts = [
+                'sticky-overlap-efect-script',
+                'card-glow-efect-script',
+                'animate-in',
+                'team-scripts',
+                'global-script',
+                'likes-script'
+            ];
+            if (in_array($handle, $defer_scripts)) {
+                if (false === strpos($tag, 'defer')) {
+                    $tag = str_replace(' src=', ' defer src=', $tag);
+                }
+            }
+            return $tag;
+        }, 10, 3);
+    }
+}
+add_action( 'wp_enqueue_scripts', 'team_templates' );
 
 /*
  * =========================================================================

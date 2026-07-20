@@ -1,0 +1,1823 @@
+/* ═══════════════════════════════════════════════════════════
+   Team Page Styles — Matching Corporate Homepage Design
+   Alternating dark/light sections with homepage color palette
+   ═══════════════════════════════════════════════════════════ */
+
+
+/* ── HERO SECTION (Dark) ─────────────────────────────────── */
+
+#team-hero {
+    background: radial-gradient(ellipse 85% 85% at 50% 30%, #0a2246 0%, #05142d 60%, #030b1a 100%);
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    min-height: 100dvh;
+    display: grid;
+    place-content: center;
+
+    @media (width >=1200px) {
+        max-height: 1080px;
+    }
+
+    /* Top & bottom blueprint vignette */
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom,
+                rgba(3, 11, 26, 0.4) 0%,
+                transparent 25%,
+                transparent 75%,
+                rgba(3, 11, 26, 0.75) 100%);
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    /* Technical Blueprint grid overlay (Major 100px lines + Minor 20px grid) */
+    & .hero-bg-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+            linear-gradient(rgba(0, 162, 255, 0.12) 1.5px, transparent 1.5px),
+            linear-gradient(90deg, rgba(0, 162, 255, 0.12) 1.5px, transparent 1.5px),
+            linear-gradient(rgba(0, 162, 255, 0.06) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 162, 255, 0.06) 1px, transparent 1px);
+        background-size: 200px 200px, 200px 200px, 40px 40px, 40px 40px;
+        background-position: center center;
+        mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, black 25%, transparent 90%);
+        -webkit-mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, black 25%, transparent 90%);
+        opacity: 0.85;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    /* Glowing floating background orbs (Pure Blue Tones) */
+    & .hero-bg-orbs {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+
+        & .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.55;
+            animation: floatOrb 14s infinite ease-in-out alternate;
+        }
+
+        & .orb-1 {
+            width: 600px;
+            height: 600px;
+            top: -100px;
+            left: 10%;
+            background: radial-gradient(circle, rgba(0, 162, 255, 0.4) 0%, transparent 70%);
+            animation-duration: 16s;
+        }
+
+        & .orb-2 {
+            width: 500px;
+            height: 500px;
+            bottom: -50px;
+            right: 15%;
+            background: radial-gradient(circle, rgba(30, 144, 255, 0.35) 0%, transparent 70%);
+            animation-duration: 20s;
+            animation-delay: -5s;
+        }
+
+        & .orb-3 {
+            width: 400px;
+            height: 400px;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(0, 200, 255, 0.22) 0%, transparent 70%);
+            animation-duration: 12s;
+            animation-delay: -3s;
+        }
+    }
+
+    /* Electric Cyan Blue cursor tracking glow */
+    & .hero-glow {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(600px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+                rgba(0, 162, 255, 0.24),
+                transparent 70%);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    &:hover .hero-glow {
+        opacity: 1;
+    }
+
+    & .content {
+        display: grid;
+        gap: clamp(2rem, 10vw, 4rem);
+        padding-top: 120px;
+        position: relative;
+        z-index: 2;
+
+        @media (width > 1024px) {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        & .text {
+            text-align: center;
+
+            & .pretext {
+                background: color-mix(in srgb, #cf2e2e 20%, transparent);
+                color: var(--wp--preset--color--base);
+                border-color: color-mix(in srgb, #cf2e2e 50%, transparent);
+            }
+
+            @media (width >=1024px) {
+                text-align: left;
+            }
+
+            & .page-title {
+                font-size: clamp(2rem, 3vw, 3rem);
+                line-height: 1.3;
+                margin-top: 1rem;
+                margin-bottom: clamp(1rem, 2vw, 2rem);
+            }
+
+            & .page-subtitle {
+                font-family: var(--wp--preset--font-family--manrope);
+                font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+            }
+
+            & .page-description {
+                margin-top: 1rem;
+                font-size: clamp(1rem, 1.5vw, 1.2rem);
+            }
+        }
+
+        & .data {
+            perspective: 1200px;
+
+            & .data-block {
+                background-color: var(--wp--preset--color--footer-background);
+                position: relative;
+                margin-inline: auto;
+                box-shadow: #0b0a1540 0px 54px 55px, #0b0a151f 0px -12px 30px, #0b0a151f 0px 4px 6px, #0b0a152b 0px 12px 13px, #0b0a1517 0px -3px 5px;
+                max-width: 440px;
+                padding: clamp(1.5rem, 5vw, 2.5rem);
+                border-radius: 1rem;
+                transform-style: preserve-3d;
+                transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.8s ease;
+                overflow: hidden;
+
+                & .block-glow {
+                    position: absolute;
+                    top: 1px;
+                    left: 1px;
+                    right: 1px;
+                    bottom: 1px;
+                    pointer-events: none;
+                    border-radius: inherit;
+
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        inset: 0;
+                        background: radial-gradient(600px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(0, 162, 255, 0.12), transparent 50%);
+                        opacity: 0;
+                        transition: opacity 0.4s ease;
+                        pointer-events: none;
+                        border-radius: inherit;
+                    }
+
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        inset: -1px;
+                        background: radial-gradient(350px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(0, 162, 255, 0.8), transparent 50%);
+                        opacity: 0;
+                        transition: opacity 0.4s ease;
+                        pointer-events: none;
+                        border-radius: inherit;
+                        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+                        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+                        -webkit-mask-composite: xor;
+                        mask-composite: exclude;
+                        padding: 1px;
+                    }
+                }
+
+                &:hover .block-glow::before,
+                &:hover .block-glow::after {
+                    opacity: 1;
+                }
+
+                @media (width >=1024px) {
+                    align-self: end;
+                    transform: rotateX(8deg) rotateY(-12deg) rotateZ(2deg);
+
+                    &:hover {
+                        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+                    }
+                }
+
+                & h3 {
+                    margin-bottom: 1.5rem;
+                    position: relative;
+                    z-index: 1;
+                }
+
+                & .source {
+                    display: block;
+                    margin-top: 1.5rem;
+                    font-size: var(--wp--preset--font-size--small);
+                    opacity: .6;
+                    position: relative;
+                    z-index: 1;
+                }
+            }
+        }
+    }
+}
+
+.team-stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    position: relative;
+    z-index: 1;
+
+    & .team-stat {
+        display: flex;
+        flex-direction: column;
+        gap: .25rem;
+        padding: 1rem;
+        background: color-mix(in srgb, #ffffff 4%, transparent);
+        border-radius: .5rem;
+        border: 1px solid color-mix(in srgb, #ffffff 6%, transparent);
+        transition: all .3s ease;
+
+        &:hover {
+            background: color-mix(in srgb, #ffffff 8%, transparent);
+            border-color: color-mix(in srgb, var(--wp--preset--color--focus) 30%, transparent);
+        }
+
+        & .stat-number {
+            font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+            font-weight: 900;
+            color: var(--wp--preset--color--focus);
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+
+        & .stat-label {
+            font-size: 0.85rem;
+            color: color-mix(in srgb, #ffffff, transparent 35%);
+            line-height: 1.3;
+        }
+    }
+}
+
+
+/* ── FOUNDER SPOTLIGHT (Light Theme) ───────────────────────── */
+
+#founder-spotlight {
+    background-color: #ebe8e6;
+    color: var(--wp--preset--color--contrast);
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid color-mix(in srgb, var(--wp--preset--color--contrast), transparent 88%);
+    border-bottom: 1px solid color-mix(in srgb, var(--wp--preset--color--contrast), transparent 88%);
+
+    /* Fine tech grid lines background pattern */
+    & .founder-bg-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+            linear-gradient(color-mix(in srgb, var(--wp--preset--color--contrast), transparent 90%) 1px, transparent 1px),
+            linear-gradient(90deg, color-mix(in srgb, var(--wp--preset--color--contrast), transparent 90%) 1px, transparent 1px);
+        background-size: 60px 60px;
+        background-position: center center;
+        mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 30%, transparent 85%);
+        -webkit-mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 30%, transparent 85%);
+        opacity: 0.85;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    /* Soft ambient background glow */
+    &::before {
+        content: '';
+        position: absolute;
+        width: 700px;
+        height: 700px;
+        top: 50%;
+        left: 30%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background-color: var(--wp--preset--color--base);
+        z-index: 0;
+        filter: blur(140px);
+        pointer-events: none;
+    }
+}
+
+.founder-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+
+    @media (width >=1024px) {
+        grid-template-columns: 1fr 1.2fr;
+        gap: 5rem;
+    }
+}
+
+.founder-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    & .visual-frame {
+        position: relative;
+        width: 100%;
+        max-width: 420px;
+        background: #ffffff;
+        padding: 0.5rem;
+        border: 1px solid color-mix(in srgb, var(--wp--preset--color--contrast), transparent 85%);
+        box-shadow: 0 20px 40px -15px color-mix(in srgb, var(--wp--preset--color--contrast), transparent 90%);
+        transition: all 0.4s ease;
+
+        &:hover {
+            transform: translateY(-5px);
+            border-color: color-mix(in srgb, var(--wp--preset--color--focus) 40%, transparent);
+            box-shadow: 0 30px 60px -20px color-mix(in srgb, var(--wp--preset--color--contrast), transparent 85%);
+
+            & .corner-reticle.top-left {
+                top: 6px;
+                left: 6px;
+            }
+
+            & .corner-reticle.top-right {
+                top: 6px;
+                right: 6px;
+            }
+
+            & .corner-reticle.bottom-left {
+                bottom: 6px;
+                left: 6px;
+            }
+
+            & .corner-reticle.bottom-right {
+                bottom: 6px;
+                right: 6px;
+            }
+        }
+    }
+
+    & .founder-photo {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+    }
+
+    & .corner-reticle {
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        border: 2.5px solid var(--wp--preset--color--focus);
+        z-index: 2;
+        pointer-events: none;
+        transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+
+        &.top-left {
+            top: -6px;
+            left: -6px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        &.top-right {
+            top: -6px;
+            right: -6px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        &.bottom-left {
+            bottom: -6px;
+            left: -6px;
+            border-right: none;
+            border-top: none;
+        }
+
+        &.bottom-right {
+            bottom: -6px;
+            right: -6px;
+            border-left: none;
+            border-top: none;
+        }
+    }
+}
+
+.founder-info {
+    & .pretext {
+        color: var(--wp--preset--color--focus);
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        background: color-mix(in srgb, var(--wp--preset--color--focus) 10%, transparent);
+        border: 1px solid color-mix(in srgb, var(--wp--preset--color--focus) 25%, transparent);
+        padding: 0.25rem 0.75rem;
+        border-radius: 99px;
+        display: inline-block;
+    }
+
+    & .founder-name {
+        font-size: clamp(2.4rem, 5vw, 3.4rem);
+        font-weight: 800;
+        color: var(--wp--preset--color--contrast);
+        margin-bottom: 1rem;
+        letter-spacing: -0.02em;
+    }
+
+    & .founder-role {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: color-mix(in srgb, var(--wp--preset--color--contrast), transparent 35%);
+        margin-top: -1.25rem;
+    }
+}
+
+.founder-quote {
+    position: relative;
+    background: #ffffff;
+    border: 1px solid color-mix(in srgb, var(--wp--preset--color--contrast), transparent 88%);
+    border-radius: 1rem;
+    padding: 1.75rem 2rem 1.75rem 3rem;
+    margin: 2.5rem 0;
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--wp--preset--color--contrast), transparent 94%);
+
+    & .quote-icon {
+        position: absolute;
+        top: 1.5rem;
+        left: 1rem;
+        width: 1.5rem;
+        height: 1.5rem;
+        color: var(--wp--preset--color--focus);
+    }
+
+    & p {
+        font-size: 1.15rem;
+        line-height: 1.6;
+        font-style: italic;
+        color: var(--wp--preset--color--contrast);
+        margin: 0;
+    }
+}
+
+/* Spotlight Tabs */
+.spotlight-tabs {
+    display: flex;
+    gap: .75rem;
+    margin-bottom: 1.75rem;
+    flex-wrap: wrap;
+}
+
+.spot-tab-btn {
+
+    &.primary,
+    &.primary.active {
+        background-color: var(--wp--preset--color--focus) !important;
+        border: 1px solid var(--wp--preset--color--focus) !important;
+        box-shadow: 0 4px 14px color-mix(in srgb, var(--wp--preset--color--focus) 35%, transparent);
+    }
+
+    &.hollow {
+        border: 1px solid color-mix(in srgb, var(--wp--preset--color--contrast), transparent 60%) !important;
+    }
+}
+
+.spot-tab-panel {
+    display: none;
+
+    &.active {
+        display: block;
+    }
+}
+
+.founder-methodology {
+    width: 100%;
+
+    & h3 {
+        font-size: 0.85rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: color-mix(in srgb, var(--wp--preset--color--contrast), transparent 45%);
+        margin-top: 0;
+        margin-bottom: 1.25rem;
+    }
+}
+
+.methodology-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.methodology-item {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+
+    & .item-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: .3rem;
+        background: color-mix(in srgb, var(--wp--preset--color--focus) 10%, transparent);
+        border: 1px solid color-mix(in srgb, var(--wp--preset--color--focus) 25%, transparent);
+        color: var(--wp--preset--color--focus);
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+
+        & svg {
+            width: 18px;
+            height: 18px;
+        }
+    }
+
+    & .item-text {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+
+        & strong {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--wp--preset--color--contrast);
+        }
+
+        & span {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: color-mix(in srgb, var(--wp--preset--color--contrast), transparent 30%);
+        }
+    }
+}
+
+/* Counter Stats Badge */
+.founder-counter {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid color-mix(in srgb, var(--wp--preset--color--contrast), transparent 88%);
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--wp--preset--color--contrast), transparent 94%);
+    padding: 1.5rem 2rem;
+    border-radius: 1rem;
+    width: 100%;
+    position: relative;
+
+    @media (width>=768px) {
+        flex-direction: row;
+        width: fit-content;
+    }
+
+    & .counter-number {
+        font-size: clamp(3rem, 5vw, 4.5rem);
+        font-weight: 900;
+        color: var(--wp--preset--color--focus);
+        line-height: 1;
+        letter-spacing: -0.02em;
+    }
+
+    & .counter-label {
+        font-size: 0.95rem;
+        line-height: 1.4;
+        color: color-mix(in srgb, var(--wp--preset--color--contrast), transparent 25%);
+        max-width: 250px;
+    }
+}
+
+
+/* ── EXPERTS GRID (Dark — Hover-Reveal Portrait Cards) ────── */
+
+#team-grid {
+    background: radial-gradient(ellipse 90% 80% at 50% 20%, #0d1527 0%, #080d19 60%, #03060c 100%);
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid color-mix(in srgb, var(--wp--preset--color--focus) 25%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--wp--preset--color--focus) 25%, transparent);
+
+    /* Cyber Hexagonal Matrix Pattern Overlay */
+    & .grid-bg-overlay {
+        position: absolute;
+        inset: 0;
+        background-image:
+            radial-gradient(color-mix(in srgb, var(--wp--preset--color--focus) 20%, transparent) 1.5px, transparent 1.5px),
+            radial-gradient(color-mix(in srgb, var(--wp--preset--color--focus) 12%, transparent) 1.5px, transparent 1.5px);
+        background-size: 40px 40px;
+        background-position: 0 0, 20px 20px;
+        mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, black 30%, transparent 90%);
+        -webkit-mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, black 30%, transparent 90%);
+        opacity: 0.85;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    /* Dual Sapphire Spotlight Flares */
+    &::before {
+        content: '';
+        position: absolute;
+        width: 800px;
+        height: 600px;
+        top: -150px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: radial-gradient(ellipse 60% 40% at 50% 0%, color-mix(in srgb, var(--wp--preset--color--focus) 35%, transparent) 0%, transparent 75%);
+        filter: blur(60px);
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        width: 700px;
+        height: 500px;
+        bottom: -150px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: radial-gradient(ellipse 60% 40% at 50% 100%, color-mix(in srgb, #cf2e2e 16%, transparent) 0%, transparent 75%);
+        filter: blur(70px);
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    & .grid-bg-glow {
+        position: absolute;
+        top: 45%;
+        left: 15%;
+        width: 450px;
+        height: 450px;
+        background: radial-gradient(circle, color-mix(in srgb, var(--wp--preset--color--primary) 22%, transparent) 0%, transparent 70%);
+        filter: blur(100px);
+        pointer-events: none;
+        z-index: 0;
+        animation: floatOrb 18s infinite ease-in-out alternate;
+    }
+
+    & .content {
+        position: relative;
+        z-index: 1;
+    }
+}
+
+.grid-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+
+    & .pretext {
+        background: color-mix(in srgb, #cf2e2e 20%, transparent);
+        color: var(--wp--preset--color--base);
+        border-color: color-mix(in srgb, #cf2e2e 50%, transparent);
+    }
+
+    & h2 {
+        font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+        line-height: 1.25;
+        font-weight: 600;
+        color: #ffffff;
+        margin-top: 0.75rem;
+
+        & span {
+            color: color-mix(in srgb, #ffffff 60%, transparent);
+            font-weight: 500;
+        }
+    }
+}
+
+/* Filter Bar (Dark variant) */
+.filter-bar {
+    display: flex;
+    gap: .5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.filter-btn {
+    background: color-mix(in srgb, #ffffff 6%, transparent);
+    border: 1px solid color-mix(in srgb, #ffffff 10%, transparent);
+    color: color-mix(in srgb, #ffffff, transparent 40%);
+    padding: .5rem 1.25rem;
+    border-radius: .5rem;
+    font-size: .9rem;
+    font-weight: 600;
+    font-family: var(--wp--preset--font-family--manrope);
+    cursor: pointer;
+    transition: all .3s ease;
+
+    &:hover {
+        background: color-mix(in srgb, #ffffff 10%, transparent);
+        color: #ffffff;
+    }
+
+    &.active {
+        background: color-mix(in srgb, var(--wp--preset--color--focus) 15%, transparent);
+        border-color: color-mix(in srgb, var(--wp--preset--color--focus) 40%, transparent);
+        color: var(--wp--preset--color--focus);
+    }
+}
+
+/* Experts Cards Grid */
+.experts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+
+    @media (width >=640px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (width >=1200px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ── Hover-Reveal Expert Card ─────────────────────────── */
+
+.expert-card {
+    --card-height: 520px;
+    --reveal-height: 220px;
+    position: relative;
+    height: var(--card-height);
+    border-radius: 1.25rem;
+    overflow: hidden;
+    cursor: pointer;
+    transition: opacity .4s ease, transform .4s ease;
+
+    /* Outer glow border */
+    &::before {
+        content: '';
+        position: absolute;
+        inset: -1px;
+        border-radius: inherit;
+        background: linear-gradient(160deg,
+                color-mix(in srgb, var(--wp--preset--color--focus) 40%, transparent) 0%,
+                color-mix(in srgb, var(--wp--preset--color--focus) 10%, transparent) 30%,
+                transparent 60%,
+                color-mix(in srgb, var(--wp--preset--color--primary) 15%, transparent) 100%);
+        z-index: 0;
+        pointer-events: none;
+        opacity: .6;
+        transition: opacity .4s ease;
+    }
+
+    &:hover::before {
+        opacity: 1;
+    }
+
+    /* Card inner background */
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 1px;
+        border-radius: calc(1.25rem - 1px);
+        background: linear-gradient(180deg,
+                color-mix(in srgb, var(--wp--preset--color--footer-background) 60%, var(--wp--preset--color--contrast)) 0%,
+                var(--wp--preset--color--footer-background) 100%);
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    &.is-hidden {
+        display: none;
+    }
+
+    @media (width < 640px) {
+        --card-height: 480px;
+        --reveal-height: 200px;
+    }
+}
+
+/* Photo Layer */
+.card-photo {
+    position: absolute;
+    inset: 1px;
+    z-index: 1;
+    border-radius: calc(1.25rem - 1px);
+    overflow: hidden;
+    transition: transform .5s cubic-bezier(.25, 1, .5, 1);
+
+    & img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top center;
+        display: block;
+        transition: transform .5s cubic-bezier(.25, 1, .5, 1);
+    }
+
+    /* Bottom gradient fade to card bg */
+    & .card-photo-gradient {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 55%;
+        background: linear-gradient(to top,
+                var(--wp--preset--color--footer-background) 0%,
+                color-mix(in srgb, var(--wp--preset--color--footer-background) 80%, transparent) 25%,
+                color-mix(in srgb, var(--wp--preset--color--footer-background) 40%, transparent) 50%,
+                transparent 100%);
+        pointer-events: none;
+        transition: opacity .5s ease;
+    }
+}
+
+/* Info Layer — name + role at bottom */
+.card-info {
+    position: absolute;
+    bottom: 3.5rem;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    padding: 0 1.5rem;
+    transition: transform .5s cubic-bezier(.25, 1, .5, 1);
+
+    & .card-name {
+        font-size: clamp(1.3rem, 2vw, 1.6rem);
+        font-weight: 700;
+        color: #ffffff;
+        margin: 0;
+        line-height: 1.2;
+        letter-spacing: -0.01em;
+    }
+
+    & .card-role {
+        display: block;
+        font-size: .9rem;
+        font-weight: 500;
+        color: var(--wp--preset--color--focus);
+        margin-top: .35rem;
+    }
+}
+
+/* Reveal Panel — hidden below, slides up on hover */
+.card-reveal-panel {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: var(--reveal-height);
+    z-index: 3;
+    transform: translateY(100%);
+    transition: transform .5s cubic-bezier(.25, 1, .5, 1);
+    pointer-events: none;
+
+    & .reveal-inner {
+        position: relative;
+        height: 100%;
+        padding: 1.25rem 1.5rem 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: .75rem;
+        background: color-mix(in srgb, var(--wp--preset--color--footer-background) 75%, var(--wp--preset--color--focus));
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-top: 1px solid color-mix(in srgb, var(--wp--preset--color--focus) 25%, transparent);
+        border-radius: 0 0 calc(1.25rem - 1px) calc(1.25rem - 1px);
+        overflow: hidden;
+
+        /* Grid lines overlay on reveal */
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(color-mix(in srgb, var(--wp--preset--color--focus) 12%, transparent) 1px, transparent 1px),
+                linear-gradient(90deg, color-mix(in srgb, var(--wp--preset--color--focus) 12%, transparent) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: .35;
+            pointer-events: none;
+            z-index: 0;
+        }
+    }
+}
+
+.reveal-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .35rem;
+    position: relative;
+    z-index: 1;
+
+    & .reveal-tag {
+        font-size: .7rem;
+        font-weight: 600;
+        padding: .15rem .45rem;
+        border-radius: .25rem;
+        background: color-mix(in srgb, var(--wp--preset--color--focus) 15%, transparent);
+        color: var(--wp--preset--color--focus);
+        border: 1px solid color-mix(in srgb, var(--wp--preset--color--focus) 30%, transparent);
+        letter-spacing: .02em;
+    }
+}
+
+.reveal-summary {
+    font-size: .88rem;
+    line-height: 1.55;
+    color: color-mix(in srgb, #ffffff, transparent 15%);
+    margin: 0;
+    flex: 1;
+    position: relative;
+    z-index: 1;
+    /* Limit text with ellipsis */
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.btn-open-drawer {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    background: none;
+    border: none;
+    color: var(--wp--preset--color--focus);
+    font-size: .85rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    transition: all .3s ease;
+    position: relative;
+    z-index: 1;
+
+    & svg {
+        width: 16px;
+        height: 16px;
+        transition: transform .3s ease;
+    }
+
+    &:hover {
+        color: #ffffff;
+
+        & svg {
+            transform: translateX(3px);
+        }
+    }
+}
+
+/* Bottom Accent Bar */
+.card-accent-bar {
+    position: absolute;
+    bottom: .75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    height: 5px;
+    border-radius: 99px;
+    background: var(--wp--preset--color--focus);
+    z-index: 2;
+    opacity: .4;
+    transition: all .5s cubic-bezier(.25, 1, .5, 1);
+}
+
+/* ── HOVER STATES ─────────────────────────────────────── */
+
+.expert-card:hover {
+
+    & .card-photo {
+        transform: translateY(-15%);
+
+        & img {
+            transform: scale(1.05);
+        }
+
+        & .card-photo-gradient {
+            opacity: .7;
+        }
+    }
+
+    & .card-info {
+        transform: translateY(calc(-1 * var(--reveal-height) - 10px));
+    }
+
+    & .card-reveal-panel {
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    & .card-accent-bar {
+        opacity: 0;
+        transform: translateX(-50%) translateY(10px);
+    }
+}
+
+/* Touch device fallback: reveal on focus-within too */
+.expert-card:focus-within {
+    & .card-photo {
+        transform: translateY(-15%);
+    }
+
+    & .card-info {
+        transform: translateY(calc(-1 * var(--reveal-height) - 10px));
+    }
+
+    & .card-reveal-panel {
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    & .card-accent-bar {
+        opacity: 0;
+    }
+}
+
+
+/* ── METHODOLOGY (Dark) ───────────────────────────────────── */
+
+#team-methodology {
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--wp--preset--color--footer-background);
+    color: #ffffff;
+
+    &::before {
+        content: '';
+        position: absolute;
+        width: 700px;
+        height: 700px;
+        top: 50%;
+        left: 20%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background: radial-gradient(circle, color-mix(in srgb, var(--wp--preset--color--primary) 12%, transparent) 0%, transparent 70%);
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image:
+            linear-gradient(rgba(30, 144, 255, 0.25) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(30, 144, 255, 0.25) 1px, transparent 1px);
+        background-size: 100px 100px;
+        background-position: center center;
+        mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+        z-index: 0;
+        opacity: 0.25;
+        pointer-events: none;
+    }
+
+    & .content {
+        position: relative;
+        z-index: 1;
+    }
+}
+
+.methodology-split {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+    align-items: start;
+    width: 100%;
+
+    @media (width >=1024px) {
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 5rem;
+    }
+}
+
+.methodology-visual {
+    display: grid;
+    gap: 2.5rem;
+
+    @media (width >=1024px) {
+        position: sticky;
+        top: 130px;
+    }
+
+    & .visual-header {
+        text-align: center;
+
+        @media (width >=1024px) {
+            text-align: left;
+        }
+
+        & .pretext {
+            background: color-mix(in srgb, #cf2e2e 20%, transparent);
+            color: var(--wp--preset--color--base);
+            border-color: color-mix(in srgb, #cf2e2e 50%, transparent);
+        }
+
+        & h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            line-height: 1.25;
+            font-weight: 600;
+            color: var(--wp--preset--color--base);
+            margin-top: 1rem;
+        }
+    }
+}
+
+.methodology-panels {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+.method-panel {
+    position: relative;
+    background: color-mix(in srgb, var(--wp--preset--color--footer-background), transparent 40%);
+    border: 1px solid color-mix(in srgb, #ffffff, transparent 92%);
+    border-radius: 1rem;
+    padding: 1.5rem 1.75rem;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1.5rem;
+    align-items: start;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    /* Dynamic internal radial glow on mouse hover */
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(600px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(0, 162, 255, 0.12), transparent 50%);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+        z-index: -1;
+        border-radius: inherit;
+        corner-shape: inherit;
+    }
+
+    /* Dynamic border glow following cursor */
+    &::after {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        background: radial-gradient(350px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(0, 162, 255, 0.8), transparent 50%);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+        z-index: 1;
+        border-radius: inherit;
+        corner-shape: inherit;
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        padding: 1px;
+    }
+
+    &:hover::before,
+    &:hover::after {
+        opacity: 1;
+    }
+
+    & .panel-number {
+        font-family: var(--wp--preset--font-family--manrope);
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: color-mix(in srgb, #ffffff, transparent 70%);
+        transition: color 0.3s ease;
+    }
+
+    & .panel-main {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        & h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.75rem;
+            color: #ffffff;
+            transition: color 0.3s ease;
+
+            @media (width >=1024px) {
+                justify-content: flex-start;
+            }
+
+            & .badge {
+                font-size: 0.8rem;
+                font-weight: 700;
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+                padding: 0.15rem 0.5rem;
+                border-radius: 4px;
+                background: color-mix(in srgb, #ffffff, transparent 90%);
+                color: color-mix(in srgb, #ffffff, transparent 30%);
+                border: 1px solid color-mix(in srgb, #ffffff, transparent 86%);
+                transition: all 0.3s ease;
+            }
+        }
+
+        & .panel-expandable {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            overflow: hidden;
+
+            & p {
+                font-size: 1rem;
+                line-height: 1.6;
+                color: color-mix(in srgb, #ffffff, transparent 35%);
+                margin: 0;
+                min-height: 0;
+
+                @media (width >=1024px) {
+                    text-align: left;
+                }
+            }
+        }
+    }
+
+    & .panel-arrow {
+        color: color-mix(in srgb, #ffffff, transparent 70%);
+        display: grid;
+        place-items: center;
+        transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+
+        & svg {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    /* Hover & Active/Expanded */
+    &:hover,
+    &.active {
+        border-color: rgba(255, 255, 255, 0.06);
+        background: color-mix(in srgb, var(--wp--preset--color--contrast) 50%, transparent);
+        box-shadow:
+            0 15px 30px -10px rgba(0, 0, 0, 0.4),
+            inset 0 0 20px color-mix(in srgb, var(--wp--preset--color--focus) 5%, transparent);
+
+        & .panel-number {
+            color: var(--wp--preset--color--focus);
+        }
+
+        & h3 {
+            color: var(--wp--preset--color--focus);
+
+            & .badge {
+                background: color-mix(in srgb, var(--wp--preset--color--focus) 15%, transparent);
+                color: var(--wp--preset--color--focus);
+                border-color: color-mix(in srgb, var(--wp--preset--color--focus) 40%, transparent);
+            }
+        }
+
+        & .panel-expandable {
+            grid-template-rows: 1fr;
+            margin-top: 0.5rem;
+
+            & p {
+                color: color-mix(in srgb, #ffffff, transparent 15%);
+            }
+        }
+
+        & .panel-arrow {
+            color: var(--wp--preset--color--base);
+            transform: rotate(90deg);
+        }
+    }
+}
+
+
+/* ── CTA SECTION (Dark) ───────────────────────────────────── */
+
+#team-cta {
+    background: linear-gradient(170deg, var(--wp--preset--color--contrast) 0%, var(--wp--preset--color--footer-background) 100%);
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+
+    & .backdrop-glow {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+
+        & .circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: .5;
+        }
+
+        & .circle-1 {
+            width: 400px;
+            height: 400px;
+            top: -100px;
+            right: -50px;
+            background: color-mix(in srgb, var(--wp--preset--color--focus) 15%, transparent);
+        }
+
+        & .circle-2 {
+            width: 350px;
+            height: 350px;
+            bottom: -80px;
+            left: 10%;
+            background: color-mix(in srgb, var(--wp--preset--color--primary) 12%, transparent);
+        }
+
+        & .circle-3 {
+            width: 250px;
+            height: 250px;
+            top: 30%;
+            left: 60%;
+            background: color-mix(in srgb, var(--wp--preset--color--focus) 8%, transparent);
+        }
+
+        & .circle-4 {
+            width: 300px;
+            height: 300px;
+            bottom: 20%;
+            right: 30%;
+            background: color-mix(in srgb, var(--wp--preset--color--tertiary) 10%, transparent);
+        }
+    }
+
+    & .content {
+        position: relative;
+        z-index: 1;
+        max-width: 700px;
+        margin: 0 auto;
+
+        & .content-backdrop-glow {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+
+            & .circle {
+                position: absolute;
+                border-radius: 50%;
+                filter: blur(80px);
+                opacity: .3;
+            }
+
+            & .circle-1 {
+                width: 200px;
+                height: 200px;
+                top: -50px;
+                left: -50px;
+                background: var(--wp--preset--color--focus);
+            }
+
+            & .circle-2 {
+                width: 180px;
+                height: 180px;
+                bottom: -40px;
+                right: -40px;
+                background: var(--wp--preset--color--primary);
+            }
+        }
+    }
+
+    & .cta-intro {
+        position: relative;
+        z-index: 1;
+
+        & .pretext {
+            background: color-mix(in srgb, #cf2e2e 20%, transparent);
+            color: var(--wp--preset--color--base);
+            border-color: color-mix(in srgb, #cf2e2e 50%, transparent);
+        }
+
+        & .title-section {
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            line-height: 1.25;
+            font-weight: 700;
+            margin: 1.5rem 0;
+        }
+
+        & .cta-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: color-mix(in srgb, #ffffff, transparent 25%);
+            margin-bottom: 2.5rem;
+        }
+    }
+
+    & .cta-action {
+        position: relative;
+        z-index: 1;
+    }
+
+    & .cta-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 1.5rem;
+    }
+
+    & .btn.primary {
+        display: inline-flex;
+        align-items: center;
+        gap: .5rem;
+        background: var(--wp--preset--color--focus);
+        color: var(--wp--preset--color--base);
+        padding: .75rem 1.5rem;
+        border-radius: 99px;
+        font-weight: 700;
+        font-size: 1rem;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: all .3s ease;
+
+        & svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        &:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px color-mix(in srgb, var(--wp--preset--color--focus) 30%, transparent);
+        }
+    }
+
+    & .btn.secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: .5rem;
+        background: rgba(255, 255, 255, 0.08);
+        color: #ffffff;
+        padding: .75rem 1.5rem;
+        border-radius: 99px;
+        font-weight: 600;
+        font-size: 1rem;
+        text-decoration: none;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        cursor: pointer;
+        transition: all .3s ease;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.14);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+    }
+
+    & .cta-micro-copy {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+        justify-content: center;
+        font-size: .85rem;
+        color: color-mix(in srgb, #ffffff, transparent 50%);
+
+        & svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+    }
+}
+
+
+/* ── DRAWER (Dark Glassmorphism) ──────────────────────────── */
+
+.drawer-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: flex-end;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .3s ease;
+
+    &.is-open {
+        pointer-events: auto;
+        opacity: 1;
+
+        & .drawer-container {
+            transform: translateX(0);
+        }
+    }
+}
+
+.drawer-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    cursor: pointer;
+}
+
+.drawer-container {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    height: 100%;
+    background: var(--wp--preset--color--footer-background);
+    border-left: 1px solid color-mix(in srgb, #ffffff, transparent 90%);
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform .4s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 1;
+}
+
+.drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid color-mix(in srgb, #ffffff, transparent 92%);
+
+    & .drawer-label {
+        font-size: .8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .08em;
+        color: color-mix(in srgb, #ffffff, transparent 50%);
+    }
+}
+
+.drawer-close-btn {
+    background: color-mix(in srgb, #ffffff 6%, transparent);
+    border: 1px solid color-mix(in srgb, #ffffff 10%, transparent);
+    color: #ffffff;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: all .3s ease;
+
+    & svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    &:hover {
+        background: color-mix(in srgb, #ffffff 12%, transparent);
+    }
+}
+
+.drawer-content-pane {
+    display: none;
+    padding: 1.5rem;
+
+    &.active {
+        display: block;
+    }
+}
+
+.drawer-profile {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.drawer-photo-wrap {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 2px solid color-mix(in srgb, var(--wp--preset--color--focus) 30%, transparent);
+
+    & .drawer-photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.drawer-info {
+    & .drawer-name {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin: 0;
+    }
+
+    & .drawer-role {
+        font-size: .9rem;
+        color: color-mix(in srgb, #ffffff, transparent 40%);
+        margin-top: .25rem;
+    }
+}
+
+.drawer-quote {
+    position: relative;
+    background: color-mix(in srgb, #ffffff 4%, transparent);
+    border-radius: 1rem;
+    padding: 1.25rem 1.5rem 1.25rem 2.75rem;
+    margin-bottom: 1.5rem;
+
+    & .quote-icon {
+        position: absolute;
+        top: 1.25rem;
+        left: .75rem;
+        width: 1.25rem;
+        height: 1.25rem;
+        color: color-mix(in srgb, var(--wp--preset--color--focus) 20%, transparent);
+    }
+
+    & p {
+        font-size: 1rem;
+        line-height: 1.5;
+        font-style: italic;
+        color: color-mix(in srgb, #ffffff, transparent 20%);
+        margin: 0;
+    }
+}
+
+.drawer-tabs {
+    display: flex;
+    gap: .5rem;
+    margin-bottom: 1.25rem;
+}
+
+.d-tab-btn {
+    background: color-mix(in srgb, #ffffff 6%, transparent);
+    border: 1px solid color-mix(in srgb, #ffffff 10%, transparent);
+    color: color-mix(in srgb, #ffffff, transparent 40%);
+    padding: .4rem .85rem;
+    border-radius: .4rem;
+    font-size: .85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .3s ease;
+
+    &:hover {
+        background: color-mix(in srgb, #ffffff 10%, transparent);
+        color: #ffffff;
+    }
+
+    &.active {
+        background: color-mix(in srgb, var(--wp--preset--color--focus) 15%, transparent);
+        border-color: color-mix(in srgb, var(--wp--preset--color--focus) 40%, transparent);
+        color: var(--wp--preset--color--focus);
+    }
+}
+
+.d-panel {
+    display: none;
+
+    &.active {
+        display: block;
+    }
+}
+
+.drawer-bio-text {
+    font-size: .95rem;
+    line-height: 1.7;
+    color: color-mix(in srgb, #ffffff, transparent 20%);
+}
+
+.drawer-cases-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    & li {
+        display: flex;
+        gap: .75rem;
+        align-items: flex-start;
+        font-size: .92rem;
+        line-height: 1.5;
+        color: color-mix(in srgb, #ffffff, transparent 20%);
+
+        & svg {
+            flex-shrink: 0;
+            color: var(--wp--preset--color--focus);
+            margin-top: .2rem;
+            width: 14px;
+            height: 14px;
+        }
+    }
+}
+
+.drawer-footer {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid color-mix(in srgb, #ffffff, transparent 92%);
+}
+
+.btn-drawer-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    background: var(--wp--preset--color--focus);
+    color: var(--wp--preset--color--base);
+    padding: .65rem 1.25rem;
+    border-radius: 99px;
+    font-weight: 700;
+    font-size: .9rem;
+    text-decoration: none;
+    transition: all .3s ease;
+
+    & svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    &:hover {
+        filter: brightness(1.1);
+        transform: translateY(-2px);
+    }
+}
+
+
+/* ── CHROMIUM SQUIRCLE OVERRIDES ──────────────────────────── */
+
+.is-chromium {
+    & #team-hero .data-block {
+        border-radius: 2rem !important;
+        corner-shape: squircle;
+    }
+
+    & .team-stat {
+        border-radius: 1rem !important;
+        corner-shape: squircle;
+    }
+
+    & .founder-quote,
+    & .founder-counter {
+        border-radius: 2rem !important;
+        corner-shape: squircle;
+    }
+
+    & .item-icon {
+        border-radius: .8rem;
+        corner-shape: squircle;
+    }
+
+    & .expert-card .card-inner {
+        border-radius: 1.5rem !important;
+        corner-shape: squircle;
+    }
+
+    & .filter-btn {
+        border-radius: 1rem !important;
+        corner-shape: squircle;
+    }
+
+    & .method-panel {
+        border-radius: 2rem !important;
+        corner-shape: squircle;
+    }
+
+    & .drawer-quote {
+        border-radius: 1.5rem !important;
+        corner-shape: squircle;
+    }
+}
+
+/* ── ANIMATIONS ───────────────────────────────────────────── */
+
+@keyframes floatOrb {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(30px, -40px) scale(1.08);
+    }
+
+    100% {
+        transform: translate(-20px, 30px) scale(0.95);
+    }
+}
