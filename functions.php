@@ -39,7 +39,8 @@ function crisisacademy_get_assets()
             'upcoming-events-styles' => $assets_path . '/css/homepage/upcoming-events.css',
             'news-styles' => $assets_path . '/css/homepage/news.css',
             'faq-styles' => $assets_path . '/css/homepage/faq.css',
-            'team-styles' => $assets_path . '/css/team.css'
+            'team-styles' => $assets_path . '/css/team.css',
+            'contact-styles' => $assets_path . '/css/contact.css'
         ],
         'js' => [
             'homepage-scripts' => $assets_path . '/js/homepage/homepage.js',
@@ -47,7 +48,8 @@ function crisisacademy_get_assets()
             'testimonies-scripts' => $assets_path . '/js/homepage/testimonies.js',
             'upcoming-events-scripts' => $assets_path . '/js/homepage/upcoming-events.js',
             'down-chart-scripts' => $assets_path . '/js/homepage/down-chart.js',
-            'team-scripts' => $assets_path . '/js/team.js'
+            'team-scripts' => $assets_path . '/js/team.js',
+            'contact-scripts' => $assets_path . '/js/contact.js'
         ]
     ];
 }
@@ -330,6 +332,49 @@ function team_templates() {
     }
 }
 add_action( 'wp_enqueue_scripts', 'team_templates' );
+
+/**
+ * Contact Page Template
+ */
+function contact_templates() {
+    if (is_page_template('templates/contact.php')) {
+        $a = crisisacademy_get_assets();
+        $b = avante_get_assets();
+
+        function unload_parts_header_contact() {
+            wp_dequeue_style( 'page' );
+        }
+        add_action( 'wp_enqueue_scripts', 'unload_parts_header_contact', 100 );
+
+        crisisacademy_enqueue_style('homepage', $a['css']['homepage']);
+        crisisacademy_enqueue_style('contact-styles', $a['css']['contact-styles']);
+        crisisacademy_enqueue_script('contact-scripts', $a['js']['contact-scripts']);
+
+        // Shared homepage scripts for consistent interactions
+        avante_enqueue_script('sticky-overlap-efect-script', $b['js']['sticky-overlap-efect-script']);
+        avante_enqueue_script('card-glow-efect-script', $b['js']['card-glow-efect-script']);
+        avante_enqueue_script('animate-in', $b['js']['animate-in']);
+
+        // Defer non-critical scripts
+        add_filter('script_loader_tag', function($tag, $handle, $src) {
+            $defer_scripts = [
+                'sticky-overlap-efect-script',
+                'card-glow-efect-script',
+                'animate-in',
+                'contact-scripts',
+                'global-script',
+                'likes-script'
+            ];
+            if (in_array($handle, $defer_scripts)) {
+                if (false === strpos($tag, 'defer')) {
+                    $tag = str_replace(' src=', ' defer src=', $tag);
+                }
+            }
+            return $tag;
+        }, 10, 3);
+    }
+}
+add_action( 'wp_enqueue_scripts', 'contact_templates' );
 
 /*
  * =========================================================================
