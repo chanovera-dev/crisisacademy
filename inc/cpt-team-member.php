@@ -63,12 +63,21 @@ function crisisacademy_register_team_member_cpt() {
         'publicly_queryable'    => true,
         'capability_type'       => 'post',
         'show_in_rest'          => true,
-        'rewrite'               => ['slug' => 'equipo-experto', 'with_front' => false],
+        'rewrite'               => ['slug' => 'team', 'with_front' => false],
     ];
 
     register_post_type('team_member', $args);
 }
 add_action('init', 'crisisacademy_register_team_member_cpt', 0);
+
+// Auto-flush rewrite rules once to prevent 404 errors on /team/ URLs
+function crisisacademy_flush_team_cpt_rewrites() {
+    if (get_option('crisisacademy_team_rewrite_flushed_v3') !== '1') {
+        flush_rewrite_rules(false);
+        update_option('crisisacademy_team_rewrite_flushed_v3', '1');
+    }
+}
+add_action('init', 'crisisacademy_flush_team_cpt_rewrites', 99);
 
 
 function crisisacademy_register_team_category_taxonomy() {
