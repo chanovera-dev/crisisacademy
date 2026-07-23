@@ -215,7 +215,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['tca_bio_nonce'])) {
                 $body .= '<p>Se ha creado y publicado automáticamente el perfil para <strong>' . esc_html($full_name) . '</strong>.</p>';
                 $body .= '<p><strong>Cargo:</strong> ' . esc_html($role_full) . '</p>';
                 $body .= '<p><strong>Enlace del perfil creado:</strong> <a href="' . esc_url($created_post_url) . '" target="_blank">' . esc_url($created_post_url) . '</a></p>';
-                $body .= '<p>Puedes editar este perfil en cualquier momento desde el Admin de WordPress en <strong>Equipo de Expertos > Todos los Miembros</strong>.</p>';
+                $body .= '<p>Puedes editar este perfil en cualquier momento desde el Admin de WordPress en <strong>Team Expertos > Todos los Miembros</strong>.</p>';
                 $body .= '</div></body></html>';
 
                 $headers = [

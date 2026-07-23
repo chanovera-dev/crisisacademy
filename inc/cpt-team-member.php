@@ -14,9 +14,9 @@ function crisisacademy_register_team_member_cpt() {
 
     // Labels for CPT
     $labels = [
-        'name'                  => _x('Equipo de Expertos', 'Post Type General Name', 'thecrisisacademy'),
+        'name'                  => _x('Team Expertos', 'Post Type General Name', 'thecrisisacademy'),
         'singular_name'         => _x('Miembro del Equipo', 'Post Type Singular Name', 'thecrisisacademy'),
-        'menu_name'             => __('Equipo de Expertos', 'thecrisisacademy'),
+        'menu_name'             => __('Team Expertos', 'thecrisisacademy'),
         'name_admin_bar'        => __('Miembro del Equipo', 'thecrisisacademy'),
         'archives'              => __('Archivo de Equipo', 'thecrisisacademy'),
         'attributes'            => __('Atributos de Miembro', 'thecrisisacademy'),
