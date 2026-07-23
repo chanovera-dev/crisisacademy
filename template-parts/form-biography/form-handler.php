@@ -250,7 +250,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['tca_bio_nonce'])) {
                         <a href="<?php echo esc_url($created_post_url); ?>" class="btn primary" style="display: inline-block;">
                             Ver mi Biografía Publicada
                         </a>
-                        <a href="<?php echo esc_url(home_url('/equipo')); ?>" class="btn secondary" style="display: inline-block; color: var(--wp--preset--color--contrast);">
+                        <a href="<?php echo esc_url(home_url('/team')); ?>" class="btn secondary" style="display: inline-block; color: var(--wp--preset--color--contrast);">
                             Ir a la página de Equipo
                         </a>
                     </div>

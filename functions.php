@@ -7,7 +7,6 @@ if (!defined('ABSPATH')) {
 // Custom Post Types & Custom Fields for Team
 require_once get_stylesheet_directory() . '/inc/cpt-team-member.php';
 require_once get_stylesheet_directory() . '/inc/acf-team-fields.php';
-require_once get_stylesheet_directory() . '/inc/import-carolina.php';
 
 
 /**

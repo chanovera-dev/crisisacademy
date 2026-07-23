@@ -282,16 +282,6 @@ function crisisacademy_get_team_member_data($slug_or_id = null) {
         ];
     }
 
-    // Fallback to data.php static array
-    $data_path = get_stylesheet_directory() . '/template-parts/team-bio/data.php';
-    if (file_exists($data_path)) {
-        include $data_path;
-        $search_slug = is_numeric($slug_or_id) ? get_post_field('post_name', $slug_or_id) : $slug_or_id;
-        if (isset($team_members[$search_slug])) {
-            return $team_members[$search_slug];
-        }
-    }
-
     return null;
 }
 

@@ -18,7 +18,7 @@ if (!isset($member)) return;
 
         <!-- Left: Text Content -->
         <div class="bio-hero-text">
-            <a href="<?php echo esc_url(home_url('/equipo')); ?>" class="bio-back-link object-reveal">
+            <a href="<?php echo esc_url(home_url('/team')); ?>" class="bio-back-link object-reveal">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
                     <line x1="19" y1="12" x2="5" y2="12"></line>
                     <polyline points="12 19 5 12 12 5"></polyline>

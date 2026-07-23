@@ -32,7 +32,7 @@ get_header(); ?>
             <div class="content">
                 <h1>Perfil no encontrado</h1>
                 <p>No se ha encontrado la información de este miembro del equipo.</p>
-                <a href="<?php echo esc_url(home_url('/equipo')); ?>" class="btn primary" style="margin-top: 2rem; display: inline-block;">
+                <a href="<?php echo esc_url(home_url('/team')); ?>" class="btn primary" style="margin-top: 2rem; display: inline-block;">
                     Volver al equipo
                 </a>
             </div>

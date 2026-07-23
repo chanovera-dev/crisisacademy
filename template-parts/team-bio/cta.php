@@ -32,7 +32,7 @@ if (!isset($member)) return;
                     </svg>
                     Solicitar consultoría con <?php echo esc_html(explode(' ', $member['name'])[0]); ?>
                 </a>
-                <a href="<?php echo esc_url(home_url('/equipo')); ?>" class="btn secondary">
+                <a href="<?php echo esc_url(home_url('/team')); ?>" class="btn secondary">
                     Ver equipo completo
                 </a>
             </div>

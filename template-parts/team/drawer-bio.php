@@ -1,92 +1,9 @@
 <?php
 /**
- * Team Page — Side Drawer Bio Component (Dynamic CPT + Static fallback)
- * Design: Updated to match corporate homepage dark glassmorphism palette
+ * Team Page — Side Drawer Bio Component (Pure Dynamic CPT loop)
+ * Design: Matching corporate homepage dark glassmorphism palette
  * Theme: The Crisis Academy
  */
-
-$theme_uri = get_stylesheet_directory_uri();
-
-$static_drawers = [
-    'carolina-eslava' => [
-        'name'        => 'Carolina Eslava',
-        'role'        => 'Fundadora & Directora General de The Crisis Academy',
-        'image'       => $theme_uri . '/assets/img/carolina-eslava.webp',
-        'quote'       => 'Una crisis no pone a prueba tus comunicados de prensa; pone a prueba la resiliencia estructural y la velocidad de toma de decisiones de tu comité ejecutivo.',
-        'bio'         => 'Carolina Eslava es una de las referentes más destacadas en la gestión y entrenamiento de comités de crisis directivos en América Latina. Con más de 25 años de trayectoria profesional, ha asesorado a juntas directivas y presidentes de multinacionales de los sectores petrolero, financiero, farmacéutico y de consumo masivo.',
-        'cases'       => [
-            'Gestión directa de más de 150 comités de crisis en vivo durante contingencias de alto impacto reputacional.',
-            'Diseñadora del simulador de estrés directivo inmersivo bajo fatiga cognitiva acelerada.',
-            'Conferencista e investigadora invitada en foros internacionales de gobierno corporativo.'
-        ],
-        'permalink'   => home_url('/carolina-eslava'),
-    ],
-    'roberto-mendoza' => [
-        'name'        => 'Dr. Roberto Mendoza',
-        'role'        => 'Director de Estrategia Legal & Regulatoria',
-        'image'       => $theme_uri . '/assets/img/roberto-mendoza.png',
-        'quote'       => 'La victoria legal no sirve de nada si la organización pierde su licencia social para operar en el proceso.',
-        'bio'         => 'El Dr. Roberto Mendoza lidera la práctica de mitigación de riesgos legales y cumplimiento normativo en The Crisis Academy. Cuenta con amplia experiencia en la coordinación entre la estrategia de defensa jurídica corporativa y la contención del impacto público y reputacional.',
-        'cases'       => [
-            'Líder de estrategia legal en investigaciones de competencia económica e inspecciones regulatorias.',
-            'Asesor legal principal en procesos de reestructuración corporativa bajo escrutinio público.',
-            'Especialista en gobernanza de datos y responsabilidad jurídica de ejecutivos C-Level.'
-        ],
-        'permalink'   => home_url('/roberto-mendoza'),
-    ],
-    'elena-vasquez' => [
-        'name'        => 'Ing. Elena Vásquez',
-        'role'        => 'Directora de Ciberseguridad & Respuesta a Incidentes',
-        'image'       => $theme_uri . '/assets/img/elena-vasquez.png',
-        'quote'       => 'En una cibercrisis, la transparencia técnica combinada con una comunicación adecuada es la única vacuna contra el pánico institucional.',
-        'bio'         => 'Elena Vásquez ha dedicado más de 15 años a la respuesta técnica e institucional ante desastres de seguridad informática. Ha liderado la respuesta ejecutiva ante secuestro masivo de datos (Ransomware), fuga de información sensible de clientes y fallas críticas en sistemas bancarios.',
-        'cases'       => [
-            'Negociación y gestión de contención en más de 120 incidentes de Ransomware y ciberextorsión.',
-            'Diseño de protocolos de continuidad tecnológica ante caídas catastróficas de infraestructura.',
-            'Miembro de comités consultivos de seguridad de la información en el sector financiero.'
-        ],
-        'permalink'   => home_url('/elena-vasquez'),
-    ],
-    'marcelo-alvarez' => [
-        'name'        => 'Marcelo Álvarez',
-        'role'        => 'Director de Comunicación Estratégica & Media Training',
-        'image'       => $theme_uri . '/assets/img/marcelo-alvarez.png',
-        'quote'       => 'El silencio en las primeras dos horas de una crisis no es prudencia: es la cesión voluntaria de tu narrativa a tus detractores.',
-        'bio'         => 'Marcelo Álvarez aporta más de dos décadas de experiencia combinada entre el periodismo de investigación y la consultoría estratégica de comunicación de crisis. Es el diseñador del simulador de salas de prensa y entrevistas agresivas en vivo de The Crisis Academy.',
-        'cases'       => [
-            'Entrenamiento personalizado a más de 800 CEO, voceros y directores institucionales.',
-            'Estratega de contención en campañas desinformativas y ataques coordinados en redes sociales.',
-            'Ex-director de noticieros de televisión y analista de geopolítica mediática.'
-        ],
-        'permalink'   => home_url('/marcelo-alvarez'),
-    ],
-    'valeria-gomez' => [
-        'name'        => 'Dra. Valeria Gómez',
-        'role'        => 'Directora de Psicología Organizacional & Estrés en Crisis',
-        'image'       => $theme_uri . '/assets/img/valeria-gomez.png',
-        'quote'       => 'La claridad mental del líder en momentos de caos es la ventaja competitiva más valiosa de una empresa.',
-        'bio'         => 'La Dra. Valeria Gómez es especialista en la neuropsicología del liderazgo bajo presión extrema. Su labor en The Crisis Academy se enfoca en preparar la mentalidad directiva para operar en escenarios de alta incertidumbre y mitigar los efectos del agotamiento cognitivo.',
-        'cases'       => [
-            'Desarrollo del marco de evaluación de sesgos cognitivos en situaciones de emergencia.',
-            'Intervención en procesos de poscrisis y recuperación de la confianza de equipos humanos.',
-            'Publicaciones internacionales en journals de comportamiento organizacional y resiliencia.'
-        ],
-        'permalink'   => home_url('/valeria-gomez'),
-    ],
-    'fernando-silva' => [
-        'name'        => 'Capitán Fernando Silva',
-        'role'        => 'Director de Manejo de Incidentes Operativos & BCP',
-        'image'       => $theme_uri . '/assets/img/fernando-silva.png',
-        'quote'       => 'Un plan de continuidad que solo existe en papel es una ilusión que se derrumba al primer minuto de un evento real.',
-        'bio'         => 'El Capitán Fernando Silva aporta su vasta experiencia en el comando unificado de incidentes físicos y logísticos. Especialista en auditoría de planes de continuidad de negocio (BCP), evacuación de personal e interrupciones en la cadena de suministros globales.',
-        'cases'       => [
-            'Comando directo de respuesta en emergencias industriales y logísticas multinacionales.',
-            'Auditoría y certificación de más de 40 sistemas de continuidad operativa bajo normas ISO 22301.',
-            'Consultor de logística de evacuación en zonas de alto riesgo operativo.'
-        ],
-        'permalink'   => home_url('/fernando-silva'),
-    ]
-];
 
 // Query CPT team_member posts
 $team_drawer_query = new WP_Query([
@@ -96,29 +13,16 @@ $team_drawer_query = new WP_Query([
 ]);
 
 $drawers = [];
-$cpt_drawer_slugs = [];
 
 if ($team_drawer_query->have_posts()) {
     while ($team_drawer_query->have_posts()) {
         $team_drawer_query->the_post();
         $post_id = get_the_ID();
         $slug    = get_post_field('post_name', $post_id);
-        $cpt_drawer_slugs[] = $slug;
 
         $image_url = get_the_post_thumbnail_url($post_id, 'medium_large');
-        if (!$image_url && isset($static_drawers[$slug])) {
-            $image_url = $static_drawers[$slug]['image'];
-        }
-
-        $role = function_exists('get_field') ? get_field('team_role', $post_id) : '';
-        if (!$role && isset($static_drawers[$slug])) {
-            $role = $static_drawers[$slug]['role'];
-        }
-
-        $quote = function_exists('get_field') ? get_field('team_quote', $post_id) : '';
-        if (!$quote && isset($static_drawers[$slug])) {
-            $quote = $static_drawers[$slug]['quote'];
-        }
+        $role      = function_exists('get_field') ? get_field('team_role', $post_id) : '';
+        $quote     = function_exists('get_field') ? get_field('team_quote', $post_id) : '';
 
         // Bio paragraph(s)
         $bio_text = '';
@@ -137,9 +41,6 @@ if ($team_drawer_query->have_posts()) {
         if (!$bio_text) {
             $bio_text = get_the_excerpt();
         }
-        if (!$bio_text && isset($static_drawers[$slug])) {
-            $bio_text = $static_drawers[$slug]['bio'];
-        }
 
         // Cases list
         $cases = [];
@@ -148,7 +49,7 @@ if ($team_drawer_query->have_posts()) {
             if (!empty($cases_repeater) && is_array($cases_repeater)) {
                 foreach ($cases_repeater as $c) {
                     $c_title = !empty($c['case_title']) ? $c['case_title'] : '';
-                    $c_desc = !empty($c['case_description']) ? $c['case_description'] : '';
+                    $c_desc  = !empty($c['case_description']) ? $c['case_description'] : '';
                     if ($c_title && $c_desc) {
                         $cases[] = $c_title . ': ' . $c_desc;
                     } elseif ($c_title) {
@@ -158,9 +59,6 @@ if ($team_drawer_query->have_posts()) {
                     }
                 }
             }
-        }
-        if (empty($cases) && isset($static_drawers[$slug])) {
-            $cases = $static_drawers[$slug]['cases'];
         }
 
         $drawers[$slug] = [
@@ -175,15 +73,9 @@ if ($team_drawer_query->have_posts()) {
     }
     wp_reset_postdata();
 }
-
-// Append static drawers for missing items
-foreach ($static_drawers as $slug => $static) {
-    if (!in_array($slug, $cpt_drawer_slugs)) {
-        $drawers[$slug] = $static;
-    }
-}
 ?>
 
+<?php if (!empty($drawers)) : ?>
 <div id="expert-drawer-overlay" class="drawer-overlay" aria-hidden="true">
     <div class="drawer-backdrop" data-close-drawer></div>
     
@@ -205,7 +97,9 @@ foreach ($static_drawers as $slug => $static) {
                 <!-- Profile Header -->
                 <div class="drawer-profile">
                     <div class="drawer-photo-wrap">
-                        <img src="<?php echo esc_url($d['image']); ?>" alt="<?php echo esc_attr($d['name']); ?>" class="drawer-photo">
+                        <?php if ($d['image']) : ?>
+                            <img src="<?php echo esc_url($d['image']); ?>" alt="<?php echo esc_attr($d['name']); ?>" class="drawer-photo">
+                        <?php endif; ?>
                     </div>
                     <div class="drawer-info">
                         <h2 class="drawer-name"><?php echo esc_html($d['name']); ?></h2>
@@ -274,3 +168,4 @@ foreach ($static_drawers as $slug => $static) {
 
     </div>
 </div>
+<?php endif; ?>
