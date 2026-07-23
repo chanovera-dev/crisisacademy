@@ -1,11 +1,64 @@
 <?php
 /**
- * Team Page — Founder & Academic Direction Spotlight
+ * Team Page — Founder & Academic Direction Spotlight (Dynamic CPT + fallback)
  * Design: Matches #founder section from corporate-crisisacademy-homepage
  * Theme: The Crisis Academy
  */
 
 $theme_uri = get_stylesheet_directory_uri();
+
+// Fallback values
+$founder_name  = 'Carolina Eslava';
+$founder_role  = 'Fundadora & Directora de The Crisis Academy';
+$founder_photo = $theme_uri . '/assets/img/carolina-eslava.webp';
+$founder_quote = '25 años formando y preparando comités de crisis en multinacionales frente a escenarios de alta complejidad operativa y mediática.';
+
+// Query founder from CPT
+$founder_query = new WP_Query([
+    'post_type'      => 'team_member',
+    'post_status'    => 'publish',
+    'posts_per_page' => 1,
+    'meta_query'     => [
+        [
+            'key'     => 'team_is_founder',
+            'value'   => '1',
+            'compare' => '=',
+        ]
+    ]
+]);
+
+if (!$founder_query->have_posts()) {
+    // Try query by slug
+    $founder_query = new WP_Query([
+        'post_type'      => 'team_member',
+        'post_status'    => 'publish',
+        'name'           => 'carolina-eslava',
+        'posts_per_page' => 1,
+    ]);
+}
+
+if ($founder_query->have_posts()) {
+    $founder_query->the_post();
+    $post_id = get_the_ID();
+
+    $founder_name = get_the_title();
+    $thumb = get_the_post_thumbnail_url($post_id, 'large');
+    if ($thumb) {
+        $founder_photo = $thumb;
+    }
+
+    if (function_exists('get_field')) {
+        $role_field = get_field('team_role', $post_id);
+        if ($role_field) {
+            $founder_role = $role_field;
+        }
+        $quote_field = get_field('team_quote', $post_id);
+        if ($quote_field) {
+            $founder_quote = $quote_field;
+        }
+    }
+    wp_reset_postdata();
+}
 ?>
 <section id="founder-spotlight" class="block">
     <div class="founder-bg-grid" aria-hidden="true"></div>
@@ -20,21 +73,21 @@ $theme_uri = get_stylesheet_directory_uri();
                     <div class="corner-reticle top-right"></div>
                     <div class="corner-reticle bottom-left"></div>
                     <div class="corner-reticle bottom-right"></div>
-                    <img src="<?php echo esc_url($theme_uri . '/assets/img/carolina-eslava.webp'); ?>" alt="Carolina Eslava - Fundadora & Directora" class="founder-photo" loading="lazy">
+                    <img src="<?php echo esc_url($founder_photo); ?>" alt="<?php echo esc_attr($founder_name); ?> - Fundadora & Directora" class="founder-photo" loading="lazy">
                 </div>
             </div>
 
             <!-- Right Side: Content Bio & Methodology -->
             <div class="founder-info">
                 <span class="pretext pretext-reveal">Liderazgo Académico</span>
-                <h2 class="founder-name object-reveal">Carolina Eslava</h2>
-                <div class="founder-role object-reveal">Fundadora & Directora de The Crisis Academy</div>
+                <h2 class="founder-name object-reveal"><?php echo esc_html($founder_name); ?></h2>
+                <div class="founder-role object-reveal"><?php echo esc_html($founder_role); ?></div>
 
                 <div class="founder-quote object-reveal">
                     <svg class="quote-icon" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
                         <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
                     </svg>
-                    <p>25 años formando y preparando comités de crisis en multinacionales frente a escenarios de alta complejidad operativa y mediática.</p>
+                    <p><?php echo esc_html($founder_quote); ?></p>
                 </div>
 
                 <!-- Interactive Tabs -->

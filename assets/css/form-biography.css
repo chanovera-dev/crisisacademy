@@ -1,0 +1,210 @@
+/* ═══════════════════════════════════════════════════════════
+   Form Biography Page Styles — Clean Sans-Serif Document Design
+   Theme: The Crisis Academy
+   ═══════════════════════════════════════════════════════════ */
+
+#form-bio-hero,
+#form-bio-section,
+#form-bio-hero *,
+#form-bio-section * {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+}
+
+#form-bio-hero,
+#form-bio-section {
+    background-color: #ffffff;
+    color: #222222;
+    line-height: 1.6;
+}
+
+#form-bio-hero {
+    padding-top: 140px;
+    padding-bottom: 20px;
+}
+
+.form-bio-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.form-doc-title {
+    color: #0b1f3a;
+    border-bottom: 3px solid #cf2e2e;
+    padding-bottom: 8px;
+    font-size: 24px;
+    text-transform: uppercase;
+    font-weight: 800;
+    margin: 0 0 10px;
+    letter-spacing: -0.01em;
+}
+
+.form-doc-sub {
+    font-size: 15px;
+    color: #333333;
+    margin: 0 0 10px;
+}
+
+.instruction {
+    font-style: italic;
+    color: #666666;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.req {
+    color: #cf2e2e;
+}
+
+.doc-h2 {
+    color: #0b1f3a;
+    background-color: #f0f4f8;
+    padding: 10px 15px;
+    border-left: 4px solid #1e90ff;
+    font-size: 16px;
+    margin-top: 35px;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.doc-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+
+.doc-table th,
+.doc-table td {
+    border: 1px solid #cccccc;
+    padding: 10px;
+    text-align: left;
+    font-size: 14px;
+    vertical-align: top;
+}
+
+.doc-table th {
+    background-color: #f7f9fa;
+    color: #333333;
+    font-weight: 700;
+}
+
+.doc-input,
+.doc-textarea,
+.doc-select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+    background-color: #fafafa;
+    color: #222222;
+
+    &:focus {
+        outline: none;
+        border-color: #1e90ff;
+        background-color: #ffffff;
+        box-shadow: 0 0 0 2px rgba(30, 144, 255, 0.2);
+    }
+}
+
+.doc-textarea {
+    resize: vertical;
+}
+
+.doc-file-input {
+    font-size: 13px;
+}
+
+.doc-checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 4px 0;
+
+    & label {
+        font-size: 14px;
+        cursor: pointer;
+    }
+}
+
+.doc-list-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.doc-list-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.doc-num {
+    font-weight: bold;
+    min-width: 20px;
+}
+
+.doc-btn-add {
+    background-color: #f0f4f8;
+    border: 1px solid #1e90ff;
+    color: #1e90ff;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background-color: #1e90ff;
+        color: #ffffff;
+    }
+}
+
+.doc-btn-del {
+    background: none;
+    border: none;
+    color: #cf2e2e;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 4px 8px;
+
+    &:hover {
+        color: #900;
+    }
+}
+
+.doc-submit-wrap {
+    margin-top: 40px;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.doc-submit-btn {
+    background-color: #0b1f3a;
+    color: #ffffff;
+    border: none;
+    padding: 14px 35px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+        background-color: #cf2e2e;
+    }
+}
+
+/* Notice alerts */
+#form-bio-notice {
+    padding-top: 140px;
+    padding-bottom: 40px;
+}

@@ -1,14 +1,15 @@
 <?php
 /**
- * Team Page — Experts Grid (Dark, Hover-Reveal Cards)
+ * Team Page — Experts Grid (Dynamic CPT loop with ACF & static fallback)
  * Design: Tall portrait cards with hover content reveal
  * Theme: The Crisis Academy
  */
 
 $theme_uri = get_stylesheet_directory_uri();
 
-$experts = [
-    [
+// Static fallback data for team members not yet imported to CPT
+$static_experts = [
+    'carolina-eslava' => [
         'id'          => 'carolina-eslava',
         'category'    => 'leadership comms',
         'name'        => 'Carolina Eslava',
@@ -16,53 +17,97 @@ $experts = [
         'image'       => $theme_uri . '/assets/img/carolina-eslava.webp',
         'specialties' => ['Gestión de Crisis', 'Liderazgo Ejecutivo', 'Media Training C-Suite'],
         'summary'     => '25 años formando y preparando comités de crisis en multinacionales frente a escenarios de alta complejidad operativa, reputacional y mediática.',
-    ],
-    [
-        'id'          => 'roberto-mendoza',
-        'category'    => 'legal leadership',
-        'name'        => 'Dr. Roberto Mendoza',
-        'role'        => 'Estrategia Legal & Regulatoria',
-        'image'       => $theme_uri . '/assets/img/roberto-mendoza.png',
-        'specialties' => ['Litigio de Alta Crisis', 'Cumplimiento Regulatorio', 'Blindaje Penal'],
-        'summary'     => 'Especialista en protección jurídica ante investigaciones antimonopolio, fraudes corporativos e incidentes regulatorios complejos.',
-    ],
-    [
-        'id'          => 'elena-vasquez',
-        'category'    => 'cyber ops',
-        'name'        => 'Ing. Elena Vásquez',
-        'role'        => 'Ciberseguridad & Incidencias',
-        'image'       => $theme_uri . '/assets/img/elena-vasquez.png',
-        'specialties' => ['Cibercrisis & Ransomware', 'Inteligencia de Amenazas', 'Forense Digital'],
-        'summary'     => 'Experta en contención técnica y estratégica de ataques cibernéticos a gran escala, secuestro de datos e interrupción tecnológica.',
-    ],
-    [
-        'id'          => 'marcelo-alvarez',
-        'category'    => 'comms',
-        'name'        => 'Marcelo Álvarez',
-        'role'        => 'Comunicación & Media Training',
-        'image'       => $theme_uri . '/assets/img/marcelo-alvarez.png',
-        'specialties' => ['Vocería de Emergencia', 'Gestión de Fake News', 'Restauración de Imagen'],
-        'summary'     => 'Periodista de investigación y estratega de comunicación de crisis. Ha entrenado a más de 800 voceros ejecutivos ante la presión en vivo.',
-    ],
-    [
-        'id'          => 'valeria-gomez',
-        'category'    => 'leadership ops',
-        'name'        => 'Dra. Valeria Gómez',
-        'role'        => 'Psicología & Estrés en Crisis',
-        'image'       => $theme_uri . '/assets/img/valeria-gomez.png',
-        'specialties' => ['Fatiga Cognitiva', 'Toma de Decisiones', 'Resiliencia de Comités'],
-        'summary'     => 'Doctora en Neuropsicología del Trabajo. Desarrolla protocolos para mitigar el sesgo de pánico y la parálisis por análisis en directivos.',
-    ],
-    [
-        'id'          => 'fernando-silva',
-        'category'    => 'ops legal',
-        'name'        => 'Capitán Fernando Silva',
-        'role'        => 'Incidentes Operativos & BCP',
-        'image'       => $theme_uri . '/assets/img/fernando-silva.png',
-        'specialties' => ['Planes de Continuidad (BCP)', 'Cadena de Suministro', 'Evacuación & Seguridad'],
-        'summary'     => 'Ex-Comandante de Operaciones de Emergencia. Asesora en logística de respuesta, evacuación de activos y reactivación operativa.',
+        'permalink'   => home_url('/carolina-eslava'),
     ]
 ];
+
+// Dynamic CPT Query
+$team_query = new WP_Query([
+    'post_type'      => 'team_member',
+    'post_status'    => 'publish',
+    'posts_per_page' => -1,
+    'orderby'        => 'menu_order title',
+    'order'          => 'ASC',
+]);
+
+$experts = [];
+$cpt_slugs = [];
+
+if ($team_query->have_posts()) {
+    while ($team_query->have_posts()) {
+        $team_query->the_post();
+        $post_id   = get_the_ID();
+        $slug      = get_post_field('post_name', $post_id);
+        $cpt_slugs[] = $slug;
+
+        // Categories from taxonomy
+        $terms = get_the_terms($post_id, 'team_category');
+        $cat_slugs = [];
+        if (!empty($terms) && !is_wp_error($terms)) {
+            foreach ($terms as $t) {
+                $cat_slugs[] = $t->slug;
+            }
+        }
+        $category_str = implode(' ', $cat_slugs);
+
+        // Featured Image
+        $image_url = get_the_post_thumbnail_url($post_id, 'large');
+        if (!$image_url && isset($static_experts[$slug])) {
+            $image_url = $static_experts[$slug]['image'];
+        }
+
+        // ACF Fields
+        $role = function_exists('get_field') ? get_field('team_role_short', $post_id) : '';
+        if (!$role && function_exists('get_field')) {
+            $role = get_field('team_role', $post_id);
+        }
+        if (!$role && isset($static_experts[$slug])) {
+            $role = $static_experts[$slug]['role'];
+        }
+
+        $summary = function_exists('get_field') ? get_field('team_summary', $post_id) : '';
+        if (!$summary) {
+            $summary = get_the_excerpt();
+        }
+        if (!$summary && isset($static_experts[$slug])) {
+            $summary = $static_experts[$slug]['summary'];
+        }
+
+        $specialties = [];
+        if (function_exists('get_field')) {
+            $spec_repeater = get_field('team_specialties', $post_id);
+            if (!empty($spec_repeater)) {
+                foreach ($spec_repeater as $sp) {
+                    if (!empty($sp['specialty_name'])) {
+                        $specialties[] = $sp['specialty_name'];
+                    }
+                }
+            }
+        }
+        if (empty($specialties) && isset($static_experts[$slug])) {
+            $specialties = $static_experts[$slug]['specialties'];
+        }
+
+        $experts[] = [
+            'id'          => $slug,
+            'category'    => $category_str,
+            'name'        => get_the_title(),
+            'role'        => $role,
+            'image'       => $image_url,
+            'specialties' => $specialties,
+            'summary'     => $summary,
+            'permalink'   => get_permalink($post_id),
+        ];
+    }
+    wp_reset_postdata();
+}
+
+// Append static experts that are not yet created in CPT
+foreach ($static_experts as $slug => $static) {
+    if (!in_array($slug, $cpt_slugs)) {
+        $experts[] = $static;
+    }
+}
 ?>
 
 <section id="team-grid" class="block">

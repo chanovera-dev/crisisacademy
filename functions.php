@@ -4,6 +4,12 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
+// Custom Post Types & Custom Fields for Team
+require_once get_stylesheet_directory() . '/inc/cpt-team-member.php';
+require_once get_stylesheet_directory() . '/inc/acf-team-fields.php';
+require_once get_stylesheet_directory() . '/inc/import-carolina.php';
+
+
 /**
  * Enqueue child theme styles.
  */
@@ -40,6 +46,8 @@ function crisisacademy_get_assets()
             'news-styles' => $assets_path . '/css/homepage/news.css',
             'faq-styles' => $assets_path . '/css/homepage/faq.css',
             'team-styles' => $assets_path . '/css/team.css',
+            'team-bio-styles' => $assets_path . '/css/team-bio.css',
+            'form-bio-styles' => $assets_path . '/css/form-biography.css',
             'contact-styles' => $assets_path . '/css/contact.css'
         ],
         'js' => [
@@ -49,6 +57,8 @@ function crisisacademy_get_assets()
             'upcoming-events-scripts' => $assets_path . '/js/homepage/upcoming-events.js',
             'down-chart-scripts' => $assets_path . '/js/homepage/down-chart.js',
             'team-scripts' => $assets_path . '/js/team.js',
+            'team-bio-scripts' => $assets_path . '/js/team-bio.js',
+            'form-bio-scripts' => $assets_path . '/js/form-biography.js',
             'contact-scripts' => $assets_path . '/js/contact.js'
         ]
     ];
@@ -332,6 +342,94 @@ function team_templates() {
     }
 }
 add_action( 'wp_enqueue_scripts', 'team_templates' );
+
+/**
+ * Team Bio Page Template
+ */
+function team_bio_templates() {
+    if (is_page_template('templates/team-bio.php') || is_singular('team_member')) {
+        $a = crisisacademy_get_assets();
+        $b = avante_get_assets();
+
+        function unload_parts_header_team_bio() {
+            wp_dequeue_style( 'page' );
+        }
+        add_action( 'wp_enqueue_scripts', 'unload_parts_header_team_bio', 100 );
+
+        crisisacademy_enqueue_style('homepage', $a['css']['homepage']);
+        crisisacademy_enqueue_style('team-bio-styles', $a['css']['team-bio-styles']);
+        crisisacademy_enqueue_script('team-bio-scripts', $a['js']['team-bio-scripts']);
+
+        // Shared scripts for consistent interactions
+        avante_enqueue_script('sticky-overlap-efect-script', $b['js']['sticky-overlap-efect-script']);
+        avante_enqueue_script('card-glow-efect-script', $b['js']['card-glow-efect-script']);
+        avante_enqueue_script('animate-in', $b['js']['animate-in']);
+
+        // Defer non-critical scripts
+        add_filter('script_loader_tag', function($tag, $handle, $src) {
+            $defer_scripts = [
+                'sticky-overlap-efect-script',
+                'card-glow-efect-script',
+                'animate-in',
+                'team-bio-scripts',
+                'global-script',
+                'likes-script'
+            ];
+            if (in_array($handle, $defer_scripts)) {
+                if (false === strpos($tag, 'defer')) {
+                    $tag = str_replace(' src=', ' defer src=', $tag);
+                }
+            }
+            return $tag;
+        }, 10, 3);
+    }
+}
+add_action( 'wp_enqueue_scripts', 'team_bio_templates' );
+
+/**
+ * Form Biography Page Template
+ */
+function form_biography_templates() {
+    if (is_page_template('templates/form-biography.php')) {
+        $a = crisisacademy_get_assets();
+        $b = avante_get_assets();
+
+        function unload_parts_header_form_bio() {
+            wp_dequeue_style( 'page' );
+            wp_dequeue_style( 'homepage' );
+            
+        }
+        add_action( 'wp_enqueue_scripts', 'unload_parts_header_form_bio', 100 );
+
+        crisisacademy_enqueue_style('homepage', $a['css']['homepage']);
+        crisisacademy_enqueue_style('form-bio-styles', $a['css']['form-bio-styles']);
+        crisisacademy_enqueue_script('form-bio-scripts', $a['js']['form-bio-scripts']);
+
+        // Shared scripts for consistent interactions
+        avante_enqueue_script('sticky-overlap-efect-script', $b['js']['sticky-overlap-efect-script']);
+        avante_enqueue_script('card-glow-efect-script', $b['js']['card-glow-efect-script']);
+        avante_enqueue_script('animate-in', $b['js']['animate-in']);
+
+        // Defer non-critical scripts
+        add_filter('script_loader_tag', function($tag, $handle, $src) {
+            $defer_scripts = [
+                'sticky-overlap-efect-script',
+                'card-glow-efect-script',
+                'animate-in',
+                'form-bio-scripts',
+                'global-script',
+                'likes-script'
+            ];
+            if (in_array($handle, $defer_scripts)) {
+                if (false === strpos($tag, 'defer')) {
+                    $tag = str_replace(' src=', ' defer src=', $tag);
+                }
+            }
+            return $tag;
+        }, 10, 3);
+    }
+}
+add_action( 'wp_enqueue_scripts', 'form_biography_templates' );
 
 /**
  * Contact Page Template
